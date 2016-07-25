@@ -17,7 +17,40 @@ class MainHandler(webapp2.RequestHandler):
         #template_values?
         self.response.write(template.render())
 
+class LoginHandler(webapp2.RequestHandler):
+    def get(self):
+
+        template = jinja_environment.get_template('log_in.html')
+        #template_values?
+        self.response.write(template.render())
+
+class SettingsHandler(webapp2.RequestHandler):
+    def get(self):
+
+        template = jinja_environment.get_template('settings.html')
+        #template_values?
+        self.response.write(template.render())
+
+class TimerHandler(webapp2.RequestHandler):
+    def get(self):
+
+        template = jinja_environment.get_template('timer.html')
+        #template_values?
+        self.response.write(template.render())
+
+class UserLogHandler(webapp2.RequestHandler):
+    def get(self):
+
+        template = jinja_environment.get_template('user_log.html')
+        #template_values?
+        self.response.write(template.render())
+
+
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/', MainHandler),
+    ('/login', LoginHandler),
+    ('/settings', SettingsHandler),
+    ('/timer',TimerHandler),
+    ('/user_log', UserLogHandler)
 ], debug=True)
