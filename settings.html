@@ -1,1 +1,43 @@
 <!-- this is for when we finally start working on the settings aspect -->
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Settings</title>
+    <style>
+
+    h1{
+      text-align: center;
+    }
+    </style>
+  </head>
+
+  <body>
+    <h1>your settings </h1>
+
+    <h2>How do you like your breaks?</h2>
+
+    <form method="post" action ="/">
+      <h3>number of snoozes</h3>
+      <input type="radio" name="snoozes" value="3">3
+      <input type="radio" name="snoozes" value="5">5
+      <input type="radio" name="snoozes" value="7">7
+
+      <h3>how often do we remind you?<br></h3>
+      <h4>every: <input type="text" name="remind_length"/> </h4>
+      <h3>Type of Reminders: <br></h3>
+      <input type="radio" name="message_type" value="nice">nice
+      <input type="radio" name="message_type" value="mean">mean
+      <input type="radio" name="message_type" value="funny">funny
+
+      <h3>do we email you your logs?</h3>
+      <input type="radio" name="email_option" value="yes">yes
+      <input type="radio" name="email_option" value="no">no
+
+      <p><input type="submit" value="Submit"></p>
+
+    </form>
+
+  </body>
+
+</html>
