@@ -11,6 +11,8 @@ class Reminder(ndb.Model):
     message = ndb.StringProperty()
     task = ndb.StringProperty()
 
+template_dir = os.path.join(os.path.dirname(__file__), 'templates')
+jinja_environment = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir))
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
@@ -45,7 +47,6 @@ class UserLogHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template('user_log.html')
         #template_values?
         self.response.write(template.render())
-
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
