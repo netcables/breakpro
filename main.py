@@ -2,21 +2,19 @@ import webapp2
 import jinja2
 import os
 
-
 from google.appengine.ext import ndb
 
-template_dir = os.path.join(os.path.dirname(__file__), 'templates')
-jinja_environment = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir))
+#class Message(ndb.Model):
+    #message_content = ndb.StringProperty()
 
+class Reminder(ndb.Model):
+    message = ndb.StringProperty()
+    task = ndb.StringProperty()
 
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-
-        template = jinja_environment.get_template('main.html')
-        #template_values?
-        self.response.write(template.render())
-
+        self.response.write('Hello world!')
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
