@@ -1,34 +1,27 @@
-// request permission on page load
-function notifyMe() {
-  // Let's check if the browser supports notifications
-  if (!("Notification" in window)) {
-    alert("This browser does not support desktop notification");
-  }
+// Get the modal
+var modal = document.getElementById('myModal');
 
-  // Let's check if the user is okay to get some notification
-  else if (Notification.permission === "granted") {
-    // If it's okay let's create a notification
-    var notification = new Notification("Hi there!");
-  }
+// Get the button that opens the modal
+var btn = document.getElementById("alert");
 
-  // Otherwise, we need to ask the user for permission
-  // Note, Chrome does not implement the permission static property
-  // So we have to check for NOT 'denied' instead of 'default'
-  else if (Notification.permission !== 'denied') {
-    Notification.requestPermission(function (permission) {
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
 
-      // Whatever the user answers, we make sure we store the information
-      if(!('permission' in Notification)) {
-        Notification.permission = permission;
-      }
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+    modal.style.display = "block";
+    var snd = new Audio("/sounds/puppy-barking_ds.wav"); // buffers automatically when created
+    snd.play();
+}
 
-      // If the user is okay, let's create a notification
-      if (permission === "granted") {
-        var notification = new Notification("Hi there!");
-      }
-    });
-  }
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
 
-  // At last, if the user already denied any notification, and you
-  // want to be respectful there is no need to bother him any more.
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
 }
