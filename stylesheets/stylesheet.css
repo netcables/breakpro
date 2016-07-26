@@ -95,13 +95,26 @@ img{
   text-align: center;
 }
 
+.submit_button{
+  font-size: 21px;
+  background-color: rgb(25, 219, 230);
+  border: 2px solid rgb(25, 219, 230);
+  border-radius: 10px;
+}
+.submit_button:hover {background-color: rgb(25, 219, 230);}
+
+.submit_button:active {
+  background-color: rgb(25, 219, 230);
+  transform: translateY(4px);
+}
+
 h3{
   font-size: 23px;
 }
 h4{
   font-size: 19px;
 }
-/*
+
 body{
-  background: linear-gradient(0deg, rgba(0,0,255,1), rgba(0,0,255,0));
-} */
+  background: linear-gradient(0deg, rgba(164,230,237,1), rgba(164,230,237,0));
+}
