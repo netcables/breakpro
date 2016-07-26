@@ -97,6 +97,13 @@ class AlertHandler(webapp2.RequestHandler):
         #template_values?
         self.response.write(template.render())
 
+class FriendHandler(webapp2.RequestHandler):
+    def get(self):
+
+        template = jinja_environment.get_template('friends.html')
+        #template_values?
+        self.response.write(template.render())
+
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
@@ -104,5 +111,6 @@ app = webapp2.WSGIApplication([
     ('/settings', SettingsHandler),
     ('/timer',TimerHandler),
     ('/user_log', UserLogHandler),
-    ('/alert', AlertHandler)
+    ('/alert', AlertHandler),
+    ('/friends', FriendHandler)
 ], debug=True)
