@@ -1,23 +1,40 @@
 <!DOCTYPE html>
-
 <html>
+
   <head>
     <link rel="stylesheet" href="/stylesheets/timer.css">
   </head>
-<body onload="breakTimer({{timer.break_length}}, {{timer.reminder_frequency}}, {{timer.reminder_amount}})">
-    <p>Break Timer</p>
-    <div id="clockdiv">
-      <div>
-        <span class="minutes"></span>
-        <div class="smalltext">Minutes</div>
-      </div>
-      <div>
-        <span class="seconds"></span>
-        <div class="smalltext">Seconds</div>
+
+  <body onload="breakTimer({{timer.break_length}}, {{timer.reminder_frequency}}, {{timer.reminder_amount}})">
+
+    <h1 class = "break"> break<span>pro</span> </h1>
+    <div class="line-separator"></div>
+    <br>
+    <br>
+    <br>
+
+    <div class = "timer_letter">
+      <h1>T </h1>
+      <h1>I </h1>
+      <h1>M </h1>
+      <h1>E </h1>
+      <h1>R </h1>
+    </div>
+
+    <div>
+      <div id="clockdiv">
+        <div class = "minute_seconds">
+          <span class="minutes"></span>
+          <div class="smalltext">Minutes</div>
+        </div>
+        <div>
+          <span class="seconds"></span>
+          <div class="smalltext">Seconds</div>
+        </div>
       </div>
     </div>
-    <div id="myModal" class="modal">
 
+    <div id="myModal" class="modal">
       <!-- Modal content -->
       <div class="modal-content">
         <span class="close">x</span>
@@ -25,9 +42,10 @@
         <button id="ok">I will</button>
         <button id="snooze">Just a little more breaktime...</button>
       </div>
-
     </div>
-  <script src="/scripts/alerts.js"></script>
-  <script src="/scripts/timer.js"></script>
-</body>
+
+    <script src="/scripts/alerts.js"></script>
+    <script src="/scripts/timer.js"></script>
+  </body>
+
 </html>
