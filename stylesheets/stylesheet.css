@@ -1,5 +1,73 @@
 
 h1{
   text-align: center;
+  font-size: 40px;
+}
+h1 span {
+ color: rgb(255, 161, 12);
+}
+
+h2{
+  text-align: center;
+}
+h2 span {
+ color: rgb(255, 161, 12);
+}
+
+.bob{
   color: red;
+}
+
+.line-separator{
+height:5px;
+border-bottom:5px solid rgb(25, 216, 227);
+margin-left: 450px;
+margin-right: 450px;
+}
+
+.section_one{
+  background-color: rgb(94, 230, 237);
+  height: 325px;
+  width: 275px;
+  margin: 45px;
+  margin-left: 100px;
+  float: left;
+  border-radius: 25px;
+
+  text-align: center;
+}
+.section_two{
+  background-color: rgb(61, 234, 237);
+  height: 360px;
+  width: 300px;
+  margin: 45px;
+  float: left;
+  border-radius: 25px;
+}
+.section_three{
+  background-color: rgb(94, 230, 237);
+  height: 325px;
+  width: 275px;
+  margin: 45px;
+  float: left;
+  border-radius: 25px;
+}
+
+.section_over{
+  background-color: white;
+  height: 225px;
+  width: 200px;
+  margin-left: 38px;
+  border-radius: 25px;
+}
+.section_over_two{
+  background-color: white;
+  height: 250px;
+  width: 225px;
+  margin-left: 38px;
+  border-radius: 25px;
+}
+
+.clear{
+  clear: both;
 }
