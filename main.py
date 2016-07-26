@@ -8,7 +8,9 @@ from google.appengine.ext import ndb
     #message_content = ndb.StringProperty()
 
 class Reminder(ndb.Model):
+    # The message associated with a reminder.
     message = ndb.StringProperty()
+    # The task associated with a reminder.
     task = ndb.StringProperty()
 
 class Timer(ndb.Model):
@@ -26,6 +28,10 @@ jinja_environment = jinja2.Environment(loader=jinja2.FileSystemLoader(template_d
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
+        timers = Timer.query().fetch()
+
+        template_values = {timers:'timers'}
+
         template = jinja_environment.get_template('main.html')
         #template_values?
         self.response.write(template.render())
@@ -89,5 +95,5 @@ app = webapp2.WSGIApplication([
     ('/settings', SettingsHandler),
     ('/timer',TimerHandler),
     ('/user_log', UserLogHandler),
-    ('/alert.html', AlertHandler)
+    ('/alert', AlertHandler)
 ], debug=True)
