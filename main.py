@@ -65,7 +65,7 @@ class TimerHandler(webapp2.RequestHandler):
     def get(self):
         urlsafe_key = self.request.get('key')
 
-        key = ndb.key(urlsafe=urlsafe_key)
+        key = ndb.Key(urlsafe=urlsafe_key)
         timer = timer_key.get()
 
         template_values = {"timer":timer}
