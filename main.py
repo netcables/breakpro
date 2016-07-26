@@ -75,10 +75,19 @@ class UserLogHandler(webapp2.RequestHandler):
         #template_values?
         self.response.write(template.render())
 
+class AlertHandler(webapp2.RequestHandler):
+    def get(self):
+
+        template = jinja_environment.get_template('alert.html')
+        #template_values?
+        self.response.write(template.render())
+
+
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/login', LoginHandler),
     ('/settings', SettingsHandler),
     ('/timer',TimerHandler),
-    ('/user_log', UserLogHandler)
+    ('/user_log', UserLogHandler),
+    ('/alert.html', AlertHandler)
 ], debug=True)
