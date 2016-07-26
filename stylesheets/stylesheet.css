@@ -1,7 +1,7 @@
 
 h1{
   text-align: center;
-  font-size: 40px;
+  font-size: 42px;
 }
 h1 span {
  color: rgb(255, 161, 12);
@@ -14,8 +14,8 @@ h2 span {
  color: rgb(255, 161, 12);
 }
 
-.bob{
-  color: red;
+.break{
+  font-size: 30px;
 }
 
 .line-separator{
@@ -30,16 +30,16 @@ margin-right: 450px;
   height: 325px;
   width: 275px;
   margin: 45px;
-  margin-left: 100px;
+  margin-left: 80px;
   float: left;
   border-radius: 25px;
 
   text-align: center;
 }
 .section_two{
-  background-color: rgb(61, 234, 237);
-  height: 360px;
-  width: 300px;
+  background-color: rgb(18, 214, 217);
+  height: 370px;
+  width: 310px;
   margin: 45px;
   float: left;
   border-radius: 25px;
@@ -64,10 +64,28 @@ margin-right: 450px;
   background-color: white;
   height: 250px;
   width: 225px;
-  margin-left: 38px;
+  margin-left: 40px;
   border-radius: 25px;
 }
 
 .clear{
   clear: both;
+}
+
+.design_break{
+  border: 5px solid orange;
+  border-radius: 25px;
+  margin-left: 350px;
+  margin-right: 350px;
+}
+
+.break_content{
+  text-align: center;
+}
+
+h3{
+  font-size: 23px;
+}
+h4{
+  font-size: 19px;
 }
