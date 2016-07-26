@@ -1,27 +1,26 @@
 <!-- THIS IS THE HTML FOR THE HOME PAGE -->
 <!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/stylesheets/stylesheet.css">
+  </head>
 
-<h1> Welcome to BREAKPRO <h1>
-
+  <body>
+<h1> Welcome to breakpro <h1>
 
 <h3> What task are you working on?</h3>
 
-<form method="post" action ="">
-  <h5>Enter your task: <input type="text" name="task"></h5>
-<br>
-<br>
+  <form method="post" action ="">
+    <h5>Enter your task: <input type="text" name="task"></h5><br><br>
 
-<h3> How long is your break?</h3>
+    <h3> How long is your break?</h3>
+    <h5>Enter your break length: <input type="text" name="break_length"/></h5><br><br>
+    <h3><input type="button" name="set_timer"> Set Timer<br><br>
+    <h3><input type="checkbox" name="add_friend"> Check here if you want to send a copy of your log to a friend!<br>
+    <p><input type="submit" value="Submit"></p>
 
-  <h5>Enter your break length: <input type="text" name="break_length"/></h5>
-<br>
-<br>
+    </form>
 
+  </body>
 
-<h3><input type="button" name="set_timer"> Set Timer<br>
-
-<br>
-
-<h3><input type="checkbox" name="add_friend"> Check here if you want to send a copy of your log to a friend!<br>
-  <p><input type="submit" value="Submit"></p>
-</form>
+</html>
