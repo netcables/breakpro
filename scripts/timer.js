@@ -1,4 +1,5 @@
 // Break Timer
+var snoozes = 0;
 
 function getTimeRemaining(endtime) {
   var t = Date.parse(endtime) - Date.parse(new Date());
@@ -25,6 +26,14 @@ function initializeClock(id, endtime) {
     if (t.total <= 0) {
       clearInterval(timeinterval);
       alert("Your break is over!");
+      // Rough concept of the snooze function
+      var r = confirm("Do you want to extend your break?");
+      if (r == true) {
+        snoozes = snoozes + 1;
+        breakTimer(1);
+      } else {
+
+}
     }
   }
 
@@ -38,4 +47,4 @@ function breakTimer(inputminutes) {
 }
 
 // The value here is the amount of minutes that the timer will run for.
-breakTimer(5);
+breakTimer(1);
