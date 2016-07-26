@@ -5,10 +5,29 @@
     <script src="/scripts/moment.min.js"></script>
     <script src="/scripts/countdown.min.js"></script>
     <script src="/scripts/moment-countdown.min.js"></script>
+    <script src="/scripts/timer.js"></script>
     <title> BreakPro Timer </title>
   </head>
   <body>
     <p>This is where the timer will go!</p>
-    <script>window.alert(moment("1982-5-25").countdown().toString();)</script>
+    <h1>Countdown Clock</h1>
+    <div id="clockdiv">
+      <div>
+        <span class="days"></span>
+        <div class="smalltext">Days</div>
+      </div>
+      <div>
+        <span class="hours"></span>
+        <div class="smalltext">Hours</div>
+      </div>
+      <div>
+        <span class="minutes"></span>
+        <div class="smalltext">Minutes</div>
+      </div>
+      <div>
+        <span class="seconds"></span>
+        <div class="smalltext">Seconds</div>
+      </div>
+    </div>
   </body>
 </html>
