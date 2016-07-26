@@ -15,22 +15,24 @@
   <body>
     <h1>your settings </h1>
 
-    <h2>How do you like your breaks?</h2>
+    <h2>Let's personalize your breaks like a Pro!</h2>
 
     <form method="post" action ="/">
-      <h3>number of snoozes</h3>
-      <input type="radio" name="snoozes" value="3">3
-      <input type="radio" name="snoozes" value="5">5
-      <input type="radio" name="snoozes" value="7">7
 
-      <h3>how often do we remind you?<br></h3>
-      <h4>every: <input type="text" name="remind_length"/> </h4>
-      <h3>Type of Reminders: <br></h3>
+      <h3>How often do you want reminders sent?<br></h3>
+      <h4>Every<input type="text" name="remind_length"/> minutes </h4>
+
+      <h3>What type of reminder messages do you want to receive?: <br></h3>
       <input type="radio" name="message_type" value="nice">nice
       <input type="radio" name="message_type" value="mean">mean
       <input type="radio" name="message_type" value="funny">funny
 
-      <h3>do we email you your logs?</h3>
+      <h3>How many times will you allow yourself to "snooze"?</h3>
+      <input type="radio" name="snoozes" value="3">3
+      <input type="radio" name="snoozes" value="5">5
+      <input type="radio" name="snoozes" value="7">7
+
+      <h3>Would you like a copy of your logs e-mailed to you?</h3>
       <input type="radio" name="email_option" value="yes">yes
       <input type="radio" name="email_option" value="no">no
 
