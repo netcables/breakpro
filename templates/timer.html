@@ -6,7 +6,7 @@
   </head>
 <body>
     <p>Break Timer</p>
-    <button onclick="breakTimer(5)">Start Timer</button>
+    <button onclick="breakTimer({{timer.break_length}}, {{timer.reminder_frequency}}, {{timer.reminder_amount}})">Start Timer</button>
     <div id="clockdiv">
       <div>
         <span class="minutes"></span>
