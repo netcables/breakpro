@@ -1,7 +1,8 @@
 // Break Timer
-var snoozes = 0;
 
+// This function gets the amount of time remaining.
 function getTimeRemaining(endtime) {
+  // Difference between the ending time and the current time.
   var t = Date.parse(endtime) - Date.parse(new Date());
   var seconds = Math.floor((t / 1000) % 60);
   var minutes = Math.floor((t / 1000 / 60) % 60);
@@ -12,11 +13,24 @@ function getTimeRemaining(endtime) {
   };
 }
 
+// This function starts up a countdown clock.
 function initializeClock(id, endtime, reminderinterval, remindercount) {
+  // The html element that the clock is shown within.
   var clock = document.getElementById(id);
+  // Location of minutes.
   var minutesSpan = clock.querySelector('.minutes');
+  // Location of seconds.
   var secondsSpan = clock.querySelector('.seconds');
+  // The amount of time between reminders.
+  var reminder_separation = reminderinterval;
+  // The amount of reminders remaining.
+  var reminders_remaining = remindercount;
+  // Check if the user has gone over their initial time.
+  var overtime = false;
+  // The total amount of time that the user has gone over their limit.
+  var total_time_over = 0;
 
+  // This function updates the clock every second.
   function updateClock() {
     var t = getTimeRemaining(endtime);
 
@@ -25,12 +39,19 @@ function initializeClock(id, endtime, reminderinterval, remindercount) {
 
     if (t.total <= 0) {
       clearInterval(timeinterval);
-      alert("Your break is over!");
-      // Rough concept of the snooze function
-      var r = confirm("Do you want to extend your break?");
-      if (r == true) {
-        snoozes = snoozes + 1;
-        breakTimer(1);
+      if (reminders_remaining === 0) {
+        alert("This is a placeholder.");
+      }
+      else if (reminders_remaining === 1) {
+        alert("This is your final reminder! YOUR BREAK IS OVER!");
+      }
+      else {
+        alert("Your break is over!");
+      }
+      reminders_remaining = reminders_remaining - 1;
+      var response = confirm("Do you want to extend your break?");
+      if (response === true) {
+        breakTimer(reminder_separation, reminder_separation, reminders_remaining);
       } else {
 
 }
