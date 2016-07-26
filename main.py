@@ -13,6 +13,7 @@ class Reminder(ndb.Model):
     # The task associated with a reminder.
     task = ndb.StringProperty()
     # The timer key associated with a reminder.
+    timer_key = ndb.KeyProperty(kind=Timer)
 
 class Timer(ndb.Model):
     # The task listed with a timer.
