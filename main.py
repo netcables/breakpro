@@ -30,7 +30,7 @@ class MainHandler(webapp2.RequestHandler):
     def get(self):
         timers = Timer.query().fetch()
 
-        template_values = {timers:'timers'}
+        template_values = {'timers':timers}
 
         template = jinja_environment.get_template('main.html')
 
