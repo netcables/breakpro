@@ -1,3 +1,5 @@
+// Break Timer
+
 function getTimeRemaining(endtime) {
   var t = Date.parse(endtime) - Date.parse(new Date());
   var seconds = Math.floor((t / 1000) % 60);
@@ -35,4 +37,5 @@ function breakTimer(inputminutes) {
   initializeClock('clockdiv', deadline);
 }
 
+// The value here is the amount of minutes that the timer will run for.
 breakTimer(5);
