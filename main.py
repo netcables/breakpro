@@ -15,7 +15,7 @@ class Reminder(ndb.Model):
 
 class Timer(ndb.Model):
     # The task listed with a timer.
-    timer_task = ndb.IntegerProperty()
+    timer_task = ndb.StringProperty()
     # The length of a break.
     break_length = ndb.IntegerProperty()
     # The amount of reminders requested after time is up.
@@ -35,16 +35,15 @@ class MainHandler(webapp2.RequestHandler):
         self.response.write(template.render(template_values))
 
     def post(self):
-        task = self.request.get('task')
-        break_length = self.request.get('break_length')
-        reminder_amount = self.request.get('reminder_amount')
-        reminder_frequency = self.request.get('reminder_frequency')
+        task = str(self.request.get('task'))
+        break_length = int(self.request.get('break_length'))
+        reminder_amount = int(self.request.get('reminder_amount'))
+        reminder_frequency = int(self.request.get('reminder_frequency'))
 
-        new_timer = Timer(timer_task=task, break_length=break_length,
-        reminder_amount=reminder_amount, reminder_frequency=reminder_frequency)
+        new_timer = Timer(timer_task=task, break_length=break_length, reminder_amount=reminder_amount, reminder_frequency=reminder_frequency)
         new_timer.put()
 
-        self.redirect('/timer?key=' + timer.key.urlsafe())
+        self.redirect('/timer?key=' + new_timer.key.urlsafe())
 
 
 class LoginHandler(webapp2.RequestHandler):
@@ -66,7 +65,7 @@ class TimerHandler(webapp2.RequestHandler):
         urlsafe_key = self.request.get('key')
 
         key = ndb.Key(urlsafe=urlsafe_key)
-        timer = timer_key.get()
+        timer = key.get()
 
         template_values = {"timer":timer}
 
