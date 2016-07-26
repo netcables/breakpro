@@ -30,7 +30,9 @@ jinja_environment = jinja2.Environment(loader=jinja2.FileSystemLoader(template_d
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
+        # Gets all of the timers in the database.
         timers = Timer.query().fetch()
+        # Gets all of the reminders in the database.
         reminders = Reminder.query().fetch()
 
         template_values = {'timers':timers, 'reminders':reminders}
@@ -67,8 +69,8 @@ class TimerHandler(webapp2.RequestHandler):
     def get(self):
         urlsafe_key = self.request.get('key')
 
-        key = ndb.Key(urlsafe=urlsafe_key)
-        timer = key.get()
+        timer_key = ndb.Key(urlsafe=urlsafe_key)
+        timer = timer_key.get()
 
         template_values = {"timer":timer}
 
