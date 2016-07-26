@@ -7,14 +7,6 @@ from google.appengine.ext import ndb
 #class Message(ndb.Model):
     #message_content = ndb.StringProperty()
 
-class Reminder(ndb.Model):
-    # The message associated with a reminder.
-    message = ndb.StringProperty()
-    # The task associated with a reminder.
-    task = ndb.StringProperty()
-    # The timer key associated with a reminder.
-    timer_key = ndb.KeyProperty(kind=Timer)
-
 class Timer(ndb.Model):
     # The task listed with a timer.
     timer_task = ndb.StringProperty()
@@ -24,6 +16,14 @@ class Timer(ndb.Model):
     reminder_amount = ndb.IntegerProperty()
     # The amount of time between reminders.
     reminder_frequency = ndb.IntegerProperty()
+
+class Reminder(ndb.Model):
+    # The message associated with a reminder.
+    message = ndb.StringProperty()
+    # The task associated with a reminder.
+    task = ndb.StringProperty()
+    # The timer key associated with a reminder.
+    timer_key = ndb.KeyProperty(kind=Timer)
 
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_environment = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir))
