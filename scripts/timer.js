@@ -51,7 +51,7 @@ function initializeClock(id, endtime, reminderinterval, remindercount) {
       reminders_remaining = reminders_remaining - 1;
       runAlert();
       var response = confirm("Do you want to extend your break?");
-      if (response === true) {
+      if (response === true) { 
         breakTimer(reminder_separation, reminder_separation, reminders_remaining);
       } else {
 
