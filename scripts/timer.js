@@ -40,7 +40,7 @@ function initializeClock(id, endtime, reminderinterval, remindercount) {
     if (t.total <= 0) {
       clearInterval(timeinterval);
       if (reminders_remaining === 0) {
-        alert("This is a placeholder.");
+
       }
       else if (reminders_remaining === 1) {
         alert("This is your final reminder! YOUR BREAK IS OVER!");
