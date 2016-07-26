@@ -12,7 +12,7 @@ function getTimeRemaining(endtime) {
   };
 }
 
-function initializeClock(id, endtime) {
+function initializeClock(id, endtime, reminderinterval, remindercount) {
   var clock = document.getElementById(id);
   var minutesSpan = clock.querySelector('.minutes');
   var secondsSpan = clock.querySelector('.seconds');
@@ -41,10 +41,9 @@ function initializeClock(id, endtime) {
   var timeinterval = setInterval(updateClock, 1000);
 }
 
-function breakTimer(inputminutes) {
+function breakTimer(inputminutes, reminderinterval, remindercount) {
   var deadline = new Date(Date.parse(new Date()) + inputminutes * 60 * 1000);
-  initializeClock('clockdiv', deadline);
+  initializeClock('clockdiv', deadline, reminderinterval, remindercount);
 }
 
 // The value here is the amount of minutes that the timer will run for.
-breakTimer(1);
