@@ -22,6 +22,7 @@ function initializeClock(id, endtime) {
 
     if (t.total <= 0) {
       clearInterval(timeinterval);
+      alert("Your break is over!");
     }
   }
 
