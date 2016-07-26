@@ -4,9 +4,8 @@
   <head>
     <link rel="stylesheet" href="/stylesheets/timer.css">
   </head>
-<body>
+<body onload="breakTimer({{timer.break_length}}, {{timer.reminder_frequency}}, {{timer.reminder_amount}})">
     <p>Break Timer</p>
-    <button onclick="breakTimer({{timer.break_length}}, {{timer.reminder_frequency}}, {{timer.reminder_amount}})">Start Timer</button>
     <div id="clockdiv">
       <div>
         <span class="minutes"></span>
