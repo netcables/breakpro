@@ -8,7 +8,7 @@ var btn = document.getElementById("alert");
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on the button, open the modal
-btn.onclick = function() {
+function runAlert() {
     modal.style.display = "block";
     var snd = new Audio("/sounds/puppy-barking_ds.wav"); // buffers automatically when created
     snd.play();
