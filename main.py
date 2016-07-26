@@ -31,9 +31,7 @@ class MainHandler(webapp2.RequestHandler):
         timers = Timer.query().fetch()
 
         template_values = {'timers':timers}
-
         template = jinja_environment.get_template('main.html')
-
         self.response.write(template.render(template_values))
 
     def post(self):
@@ -65,10 +63,15 @@ class SettingsHandler(webapp2.RequestHandler):
 
 class TimerHandler(webapp2.RequestHandler):
     def get(self):
+        urlsafe_key = self.request.get('key')
+
+        key = ndb.key(urlsafe=urlsafe_key)
+        timer = timer_key.get()
+
+        template_values = {"timer":timer}
 
         template = jinja_environment.get_template('timer.html')
-        #template_values?
-        self.response.write(template.render())
+        self.response.write(template.render(template_values))
 
     def post(self):
 
