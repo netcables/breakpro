@@ -31,8 +31,9 @@ jinja_environment = jinja2.Environment(loader=jinja2.FileSystemLoader(template_d
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         timers = Timer.query().fetch()
+        reminders = Reminder.query().fetch()
 
-        template_values = {'timers':timers}
+        template_values = {'timers':timers, 'reminders':reminders}
         template = jinja_environment.get_template('main.html')
         self.response.write(template.render(template_values))
 
