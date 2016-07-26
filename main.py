@@ -33,8 +33,8 @@ class MainHandler(webapp2.RequestHandler):
         template_values = {timers:'timers'}
 
         template = jinja_environment.get_template('main.html')
-        #template_values?
-        self.response.write(template.render())
+
+        self.response.write(template.render(template_values))
 
     def post(self):
         task = self.request.get('task')
@@ -45,6 +45,8 @@ class MainHandler(webapp2.RequestHandler):
         new_timer = Timer(timer_task=task, break_length=break_length,
         reminder_amount=reminder_amount, reminder_frequency=reminder_frequency)
         new_timer.put()
+
+        self.redirect('/timer?key=' + timer.key.urlsafe())
 
 
 class LoginHandler(webapp2.RequestHandler):
