@@ -52,7 +52,7 @@ h1.break span {
 h2{
   text-align: center;
 }
-h2 span {
+h2 span{
  color: rgb(251, 120, 53);
 }
 
@@ -70,10 +70,23 @@ margin-left: 450px;
 margin-right: 450px;
 }
 
-.timer_letter{
+.timer_letters{
   margin-left: 300px;
+  float: left;
 }
 
+.container{
+  display: flex;
+  justify-content: center;
+}
+
+#clockdiv{
+  text-align: center;
+  float: left;
+}
+
+.clear{
+  clear: both;
 
 /*
 .container{
@@ -107,8 +120,7 @@ img{
   margin-right: auto;
 }
 
-.clear{
-  clear: both;
+
 }
 
 .design_break{
