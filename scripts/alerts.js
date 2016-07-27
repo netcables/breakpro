@@ -14,6 +14,8 @@ function runAlert() {
     snd.play();
 }
 
+if ($(#button_id).val()==)
+
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
     modal.style.display = "none";
