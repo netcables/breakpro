@@ -53,8 +53,8 @@ margin-right: auto;
 }
 .section_two{
   background-color: rgb(18, 214, 217);
-  height: 375px;
-  width: 315px;
+  height: 325px;
+  width: 275px;
   margin: 45px;
   float: left;
   border-radius: 25px;
@@ -75,13 +75,6 @@ margin-right: auto;
   height: 225px;
   width: 200px;
   margin-left: 38px;
-  border-radius: 25px;
-}
-.section_over_two{
-  background-color: white;
-  height: 250px;
-  width: 225px;
-  margin-left: 45px;
   border-radius: 25px;
 }
 
