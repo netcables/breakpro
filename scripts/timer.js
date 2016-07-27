@@ -40,7 +40,7 @@ function initializeClock(id, endtime, reminderinterval, remindercount) {
     if (t.total <= 0) {
       clearInterval(timeinterval);
       if (reminders_remaining === 0) {
-
+        alert("Alright! Enjoy your work!  Remember to take productive breaks!");
       }
       else if (reminders_remaining === 1) {
         alert("This is your final reminder! YOUR BREAK IS OVER!");
@@ -50,8 +50,8 @@ function initializeClock(id, endtime, reminderinterval, remindercount) {
       }
       reminders_remaining = reminders_remaining - 1;
       runAlert();
-      var response = confirm("Do you want to extend your break?");
-      if (response === true) { 
+      var response = confirm("Do you want to extend your break? (Select cancel if you're ready to get back to work!)");
+      if (response === true) {
         breakTimer(reminder_separation, reminder_separation, reminders_remaining);
       } else {
 
