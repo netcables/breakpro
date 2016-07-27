@@ -1,0 +1,15 @@
+h1{
+  text-align: center;
+  font-size: 42px;
+}
+h1 span {
+ color: rgb(255, 161, 12);
+}
+
+.line-separator{
+height:5px;
+border-bottom:5px solid rgb(25, 216, 227);
+width: 323px;
+margin-left: auto;
+margin-right: auto;
+}

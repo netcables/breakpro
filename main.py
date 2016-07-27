@@ -76,23 +76,15 @@ class LoginHandler(webapp2.RequestHandler):
         user = users.get_current_user()
         if user:
             nickname = user.nickname()
-            #logout_url = users.create_logout_url('/')
-            #template = jinja_environment.get_template('main.html')
-            #greeting = 'Welcome, {}! (<a href="{}">sign out</a>)'.format(nickname, logout_url)
-            #user_id = user.user_id()
-            #template_values = {'user_id':user_id}
             self.redirect('/')
-            # self.response.write(template.render(template_values))
 
         else:
             login_url = users.create_login_url('/')
-            greeting = '<a href="{}">Sign in</a>'.format(login_url)
 
-        self.response.write(
-            '<html><body>{}</body></html>'.format(greeting))
+
         template = jinja_environment.get_template('log_in.html')
-        #template_values?
-        self.response.write(template.render())
+        template_values = {'login': login_url}
+        self.response.write(template.render(template_values))
 
 
 class SettingsHandler(webapp2.RequestHandler):
