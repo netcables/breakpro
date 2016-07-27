@@ -155,20 +155,6 @@ class FriendHandler(webapp2.RequestHandler):
         self.response.write(template.render())
 
 
-class AddFriendsHandler(webapp2.RequestHandler):
-    def get(self):
-
-        template = jinja_environment.get_template('add_friends.html')
-        #template_values?
-        self.response.write(template.render())
-        # Gets all of the friends in the database.
-        friends = Friends.query().fetch()
-
-    def post(self):
-        user_id = str(self.request.get('user'))
-        task = str(self.request.get('task'))
-
-
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
     ('/login', LoginHandler),
@@ -176,6 +162,5 @@ app = webapp2.WSGIApplication([
     ('/timer',TimerHandler),
     ('/user_log', UserLogHandler),
     ('/alert', AlertHandler),
-    ('/friends', FriendHandler),
-    ('/addfriends', AddFriendsHandler)
+    ('/friends', FriendHandler)
 ], debug=True)
