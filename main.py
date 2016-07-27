@@ -23,13 +23,6 @@ class Timer(ndb.Model):
     # The user id associated with a timer.
     user_id = ndb.StringProperty()
 
-class Reminder(ndb.Model):
-    # The message associated with a reminder.
-    message = ndb.StringProperty()
-    # The task associated with a reminder.
-    task = ndb.StringProperty()
-    # The timer key associated with a reminder.
-    timer_key = ndb.KeyProperty(kind=Timer)
 
 class Settings(ndb.Model):
     # The amount of reminders set.
