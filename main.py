@@ -8,8 +8,8 @@ from google.appengine.ext import ndb
 #class Message(ndb.Model):
     #message_content = ndb.StringProperty()
 
-class ModelWithUser(ndb.Model):
-    user_id = ndb.StringProperty()
+class User(ndb.Model):
+    email = ndb.StringProperty()
 
 class Timer(ndb.Model):
     # The task listed with a timer.
@@ -39,13 +39,15 @@ class Settings(ndb.Model):
     # The amount of snoozes allowed.
     reminder_snooze_setting = ndb.IntegerProperty()
     # The user associated with a set of settings.
-    setting_user_id = ndb.StringProperty()
+    user_key = ndb.KeyProperty(kind=User)
 
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_environment = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir))
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
+        #User email
+        email = str(users.get_current_user().email())
         # Gets all of the timers in the database.
         timers = Timer.query().fetch()
         # Gets all of the reminders in the database.
@@ -55,7 +57,7 @@ class MainHandler(webapp2.RequestHandler):
         # User logout
         logout_url = users.create_logout_url('/login')
 
-        template_values = {'timers':timers, 'reminders':reminders, 'user_id':user_id, 'logout': logout_url}
+        template_values = {'timers':timers, 'reminders':reminders, 'user_id':user_id, 'logout': logout_url, 'email': email}
         template = jinja_environment.get_template('main.html')
         self.response.write(template.render(template_values))
 

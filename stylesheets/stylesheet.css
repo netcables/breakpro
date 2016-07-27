@@ -20,6 +20,11 @@ h2 span {
 h3{
   font-size: 23px;
 }
+.email{
+  position: absolute;
+  top: 16%;
+  left: 3%;
+}
 h4{
   font-size: 19px;
 }
