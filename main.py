@@ -31,6 +31,16 @@ class Reminder(ndb.Model):
     # The timer key associated with a reminder.
     timer_key = ndb.KeyProperty(kind=Timer)
 
+class Settings(ndb.Model):
+    # The amount of reminders set.
+    reminder_frequency_setting = ndb.StringProperty()
+    # The type of reminders set.
+    reminder_type_setting = ndb.StringProperty()
+    # The amount of snoozes allowed.
+    reminder_snooze_setting = ndb.StringProperty()
+    # The user associated with a set of settings.
+    reminder_user_id = ndb.StringProperty()
+
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_environment = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir))
 
@@ -41,23 +51,27 @@ class MainHandler(webapp2.RequestHandler):
         # Gets all of the reminders in the database.
         reminders = Reminder.query().fetch()
         # Gets the current user ID.
-        user_id = self.request.get('user_id')
+        user_id = self.request.get('user')
 
         template_values = {'timers':timers, 'reminders':reminders, 'user_id':user_id}
         template = jinja_environment.get_template('main.html')
         self.response.write(template.render(template_values))
 
     def post(self):
+        user_id = str(self.request.get('user'))
         task = str(self.request.get('task'))
         break_length = int(self.request.get('break_length'))
         reminder_amount = int(self.request.get('reminder_amount'))
         reminder_frequency = int(self.request.get('reminder_frequency'))
-        user_id = self.request.get('user_id')
 
         new_timer = Timer(timer_task=task, break_length=break_length, reminder_amount=reminder_amount, reminder_frequency=reminder_frequency, user_id=user_id)
         new_timer.put()
 
-        self.redirect('/timer?key=' + new_timer.key.urlsafe())
+        self.redirect('/timer?user=' + user_id + '&key=' + new_timer.key.urlsafe())
+
+    def settings_switch(self):
+        user_id = str(self.request.get('user'))
+        self.redirect('/settings?user=' + user_id)
 
 
 class LoginHandler(webapp2.RequestHandler):
@@ -70,7 +84,8 @@ class LoginHandler(webapp2.RequestHandler):
             greeting = 'Welcome, {}! (<a href="{}">sign out</a>)'.format(nickname, logout_url)
             user_id = user.user_id()
             template_values = {'user_id':user_id}
-            self.response.write(template.render(template_values))
+            self.redirect('/?user=' + user_id)
+            # self.response.write(template.render(template_values))
 
         else:
             login_url = users.create_login_url('/')
@@ -85,6 +100,9 @@ class LoginHandler(webapp2.RequestHandler):
 
 class SettingsHandler(webapp2.RequestHandler):
     def get(self):
+
+        settings = Settings.query().fetch()
+
 
         template = jinja_environment.get_template('settings.html')
         #template_values?
@@ -119,7 +137,7 @@ class AlertHandler(webapp2.RequestHandler):
     def get(self):
 
         template = jinja_environment.get_template('alert.html')
-        #template_values?
+        #template_value
         self.response.write(template.render())
 
 class FriendHandler(webapp2.RequestHandler):
