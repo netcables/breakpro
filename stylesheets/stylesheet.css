@@ -31,8 +31,9 @@ h4{
 .line-separator{
 height:5px;
 border-bottom:5px solid rgb(25, 216, 227);
-margin-left: 450px;
-margin-right: 450px;
+width: 323px;
+margin-left: auto;
+margin-right: auto;
 }
 
 .container{
@@ -45,15 +46,15 @@ margin-right: 450px;
   height: 325px;
   width: 275px;
   margin: 45px;
-  margin-left: 80px;
+  margin-left: 65px;
   float: left;
   border-radius: 25px;
   display: inline-block;
 }
 .section_two{
   background-color: rgb(18, 214, 217);
-  height: 370px;
-  width: 310px;
+  height: 375px;
+  width: 315px;
   margin: 45px;
   float: left;
   border-radius: 25px;
@@ -80,7 +81,7 @@ margin-right: 450px;
   background-color: white;
   height: 250px;
   width: 225px;
-  margin-left: 40px;
+  margin-left: 45px;
   border-radius: 25px;
 }
 
