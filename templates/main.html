@@ -50,11 +50,21 @@
         <h3>How long is your break?</h3>
         <h4>Enter your break length (minutes): <input type="number" min="1" max="120" name="break_length"></h4><br>
 
-        <h3>How many reminders do you want?</h3>
-        <h4>Enter an amount of reminders (number): <input type="number" min="0" name="reminder_amount"></h4><br>
+        <input type="radio" name="reminder" value="halfway">Remind me when my break is halfway over<br>
+        <input type="radio" name="reminder" value="onethird">Remind me when my break is a third of the way over<br>
+        <input type="radio" name="reminder" value="onefourth">Remind me when my break is a fourth of the way over<br>
+        <input type="radio" name="reminder" value="noreminder">No thank you, I don't want any reminders sent on my break
+        </form>
 
-        <h3>How frequently do you want to be reminded?</h3>
-        <h4>(I want to recieve an alert every 'n' minutes): <input type="number" min="0" name="reminder_frequency"></h4><br>
+        <h3>What type of reminder messages do you want to receive?: <br></h3>
+        <input type="radio" name="message_type" value="nice">Nice
+        <input type="radio" name="message_type" value="mean">Mean
+        <input type="radio" name="message_type" value="funny">Funny
+
+        <h3>How many times will you allow yourself to "snooze"?</h3>
+        <input type="radio" name="snoozes" value="3">3
+        <input type="radio" name="snoozes" value="5">5
+        <input type="radio" name="snoozes" value="7">7
 
         <p><input class = "submit_button" type="submit" value="Start Timer"></p><br>
 
