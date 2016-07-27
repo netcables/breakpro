@@ -17,15 +17,14 @@
 
     <h2>Let's personalize your breaks like a Pro!</h2>
 
-    <form method="post" action ="/">
+    <form action ="/" method="post">
 
       <h3>How often do you want reminders sent?<br></h3>
-      <h4>Every<input type="text" name="remind_length"/> minutes </h4>
-
+      <h4>Every <input type="number" min="1" name="remind_length"/> minutes </h4>
       <h3>What type of reminder messages do you want to receive?: <br></h3>
-      <input type="radio" name="message_type" value="nice">nice
-      <input type="radio" name="message_type" value="mean">mean
-      <input type="radio" name="message_type" value="funny">funny
+        <input type="radio" name="message_type" value="nice">Nice
+        <input type="radio" name="message_type" value="mean">Mean
+        <input type="radio" name="message_type" value="funny">Funny
 
       <h3>How many times will you allow yourself to "snooze"?</h3>
       <input type="radio" name="snoozes" value="3">3
