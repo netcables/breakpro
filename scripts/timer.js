@@ -45,16 +45,11 @@ function initializeClock(id, endtime, reminderinterval, remindercount) {
       }
       else if (reminders_remaining === 1) {
         alert("This is your final reminder! YOUR BREAK IS OVER!");
-        runAlert();
       }
       else {
         alert("Your break is over!");
-        runAlert();
       }
-      var response = confirm("Do you want to extend your break?");
-      if (response === true){
-        breakTimer(reminder_separation, reminder_separation, reminders_remaining);
-      }
+      runAlert();
     }
   }
 
