@@ -130,6 +130,7 @@ class TimerHandler(webapp2.RequestHandler):
 class UserLogHandler(webapp2.RequestHandler):
     def get(self):
 
+        settings = self.request
         template = jinja_environment.get_template('user_log.html')
         #template_values?
         self.response.write(template.render())
