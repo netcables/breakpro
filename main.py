@@ -43,14 +43,12 @@ class MainHandler(webapp2.RequestHandler):
         email = str(users.get_current_user().email())
         # Gets all of the timers in the database.
         timers = Timer.query().fetch()
-        # Gets all of the reminders in the database.
-        reminders = Reminder.query().fetch()
         # Gets the current user ID.
         user_id = self.request.get('user')
         # User logout
         logout_url = users.create_logout_url('/login')
 
-        template_values = {'timers':timers, 'reminders':reminders, 'user_id':user_id, 'logout': logout_url, 'email': email}
+        template_values = {'timers':timers, 'user_id':user_id, 'logout': logout_url, 'email': email}
         template = jinja_environment.get_template('main.html')
         self.response.write(template.render(template_values))
 
