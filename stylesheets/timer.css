@@ -36,6 +36,10 @@
     cursor: pointer;
 }
 
+@font-face{
+ font-family:'digital-clock-font';
+ src: url('digital-7.ttf');
+}
 
 body{
   background: linear-gradient(0deg, rgba(164,230,237,1), rgba(164,230,237,0));
@@ -74,7 +78,8 @@ h4{
   margin-left: auto;
   float: left;
   position: absolute;
-  left: 260px;
+  left: 240px;
+
 }
 
 .container{
@@ -102,7 +107,8 @@ h4{
 }
 
 .minutes, .seconds{
-  font-size: 80px;
+  font-size: 100px;
+  font-family: digital-clock-font;
   color: rgb(25, 216, 227);
 }
 
