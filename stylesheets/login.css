@@ -6,10 +6,44 @@ h1 span {
  color: rgb(255, 161, 12);
 }
 
+h2{
+  text-align: center;
+}
+h2 span {
+ color: rgb(251, 120, 53);
+}
+
 .line-separator{
 height:5px;
 border-bottom:5px solid rgb(25, 216, 227);
 width: 323px;
 margin-left: auto;
 margin-right: auto;
+}
+
+.container{
+  display: flex;
+  justify-content: center;
+}
+
+.section_one{
+  background-color: rgb(25, 219, 230);
+  height: 325px;
+  width: 275px;
+  margin: 45px;
+  border-radius: 25px;
+}
+.section_over{
+  background-color: white;
+  height: 225px;
+  width: 200px;
+  margin-left: 38px;
+  border-radius: 25px;
+}
+
+img{
+  display: block;
+  padding-top: 25px;
+  margin-left: auto;
+  margin-right: auto;
 }
