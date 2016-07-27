@@ -103,7 +103,6 @@ class SettingsHandler(webapp2.RequestHandler):
 
         settings = Settings.query().fetch()
 
-
         template = jinja_environment.get_template('settings.html')
         #template_values?
         self.response.write(template.render())
