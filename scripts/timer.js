@@ -49,7 +49,6 @@ function initializeClock(id, endtime, reminderinterval, remindercount) {
       else {
         alert("Your break is over!");
       }
-      
       runAlert();
     }
   }
