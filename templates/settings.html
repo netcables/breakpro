@@ -17,10 +17,18 @@
 
     <h2>Let's personalize your breaks like a Pro!</h2>
 
-    <form action ="/" method="post">
+    <form method="post" action="" >
 
-      <h3>How often do you want reminders sent?<br></h3>
-      <h4>Every <input type="number" min="1" name="remind_length"/> minutes </h4>
+      <h3> Check an option below if you would like reminders set during your break </h3>
+                   (check as many options as necessary)
+      <form action="">
+      <input type="checkbox" name="reminder" value="1/2">Remind me when my break is halfway over<br>
+      <input type="checkbox" name="reminder" value="1/3">Remind me when my break is a third of the way over<br>
+      <input type="checkbox" name="reminder" value="1/4">Remind me when my break is a fourth of the way over<br>
+      <input type="checkbox" name="reminder" value="1/5">Remind me when my break is a fourth of the way over<br>
+      <input type="checkbox" name="reminder" value="0">No thank you, I don't want any reminders sent on my break
+      </form>
+
       <h3>What type of reminder messages do you want to receive?: <br></h3>
         <input type="radio" name="message_type" value="nice">Nice
         <input type="radio" name="message_type" value="mean">Mean
@@ -36,11 +44,11 @@
       <input type="radio" name="email_option" value="no">no
 
       <h3>Would you like a copy of your logs e-mailed to your friends?</h3>
-      <input type="radio" name="email_option" value="yes">yes
-      <input type="radio" name="email_option" value="no">no
+      <input type="radio" name="email_option_friend" value="yes">yes
+      <input type="radio" name="email_option_friend" value="no">no
 
 
-      <p><input type="submit" value="Submit"></p>
+      <p><input type="submit" value="submit"></p>
 
     </form>
 
