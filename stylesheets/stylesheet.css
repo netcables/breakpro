@@ -1,5 +1,5 @@
 body{
-  background: linear-gradient(0deg, rgba(164,230,237,1), rgba(164,230,237,0));
+  background: linear-gradient(0deg, rgba(149,236,236,1), rgba(149,236,236,0));
 }
 
 h1{
@@ -49,17 +49,17 @@ margin-right: auto;
   margin-left: 65px;
   float: left;
   border-radius: 25px;
-  display: inline-block;
 }
+
 .section_two{
-  background-color: rgb(18, 214, 217);
+  background-color: rgb(25, 219, 230);
   height: 325px;
   width: 275px;
   margin: 45px;
   float: left;
   border-radius: 25px;
-  display: inline-block;
 }
+
 .section_three{
   background-color: rgb(94, 230, 237);
   height: 325px;
@@ -67,7 +67,6 @@ margin-right: auto;
   margin: 45px;
   float: left;
   border-radius: 25px;
-  display: inline-block;
 }
 
 .section_over{
@@ -77,10 +76,13 @@ margin-right: auto;
   margin-left: 38px;
   border-radius: 25px;
 }
- /*
- height: 375px;
- width: 315px;
- */
+
+#pops:hover {
+ -webkit-transform: scale(1.25);
+  -moz-transform: scalle(1.25);
+  position: relative;
+  z-index: 5;
+}
 
 img{
   display: block;
@@ -93,6 +95,7 @@ img{
 }
 
 .design_break{
+  background-color: rgba(255,255,255,0.4);
   border: 5px solid orange;
   border-radius: 25px;
   margin-left: 350px;
@@ -105,7 +108,7 @@ img{
 
 .submit_button{
   font-size: 21px;
-  background-color: rgb(25, 219, 230);
+  background-color: rgb(94, 230, 237);
   border: 2px solid rgb(25, 219, 230);
   border-radius: 10px;
 }
