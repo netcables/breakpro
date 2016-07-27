@@ -36,11 +36,7 @@
     cursor: pointer;
 }
 
-/*
-body{
-  background: linear-gradient(0deg, rgba(164,230,237,1), rgba(164,230,237,0));
-}
-*/
+
 body{
   background: linear-gradient(0deg, rgba(164,230,237,1), rgba(164,230,237,0));
 }
@@ -87,13 +83,13 @@ h4{
 }
 
 .section_one{
-  background-color: rgb(94, 230, 237);
+  background-color: rgb(13, 13, 13);
   height: 305px;
   width: 575px;
   margin-left: auto;
   margin-right: auto;
   border-radius: 25px;
-  border: 4px solid rgb(51, 51, 51);
+  border: 4px solid rgb(255, 161, 12);
   float: left;
   display: flex;
   align-items: center;
@@ -102,10 +98,12 @@ h4{
 
 #clockdiv{
   font-size: 75px;
+  color: rgb(25, 216, 227);
 }
 
 .minutes, .seconds{
   font-size: 80px;
+  color: rgb(25, 216, 227);
 }
 
 .clear{
