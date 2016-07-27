@@ -7,9 +7,21 @@
     <script>
     $(document).ready(setup);
     function setup() {
-      $("input:radio[name=reminder]").click(function() {
-        var reminder = $(this).val();
-        console.log(reminder)
+      $("input:checkbox[id=half_reminder]").click(function() {
+        var half = $(this).prop('checked')
+        console.log(half)
+      });
+      $("input:checkbox[id=third_reminder]").click(function() {
+        var third = $(this).prop('checked')
+        console.log(third)
+      });
+      $("input:checkbox[id=fourth_reminder]").click(function() {
+        var fourth = $(this).prop('checked')
+        console.log(fourth)
+      });
+      $("input:checkbox[id=no_reminder]").click(function() {
+        var no_reminder = $(this).prop('checked')
+        console.log(no_reminder)
       });
       $("input:radio[name=message_type]").click(function() {
         var message_type = $(this).val();
@@ -37,10 +49,10 @@
       <h3> Check an option below if you would like reminders sent during your break </h3>
                    <h4>(check as many options as necessary)</h4>
       <form action="">
-      <input type="radio" name="reminder" id= "half_reminder" value="1/2">Remind me when my break is halfway over<br>
-      <input type="radio" name="reminder" id="third_reminder" value="1/3">Remind me when my break is a third of the way over<br>
-      <input type="radio" name="reminder" id="fourth_reminder" value="1/4">Remind me when my break is a fourth of the way over<br>
-      <input type="radio" name="reminder" id="no_reminder" value="0">No thank you, I don't want any reminders sent on my break
+      <input type="checkbox" name="reminder" id="half_reminder" value="1/2">Remind me when my break is halfway over!<br>
+      <input type="checkbox" name="reminder" id="third_reminder" value="1/3">Remind me when my break is a third of the way over!<br>
+      <input type="checkbox" name="reminder" id="fourth_reminder" value="1/4">Remind me when my break is a fourth of the way over!<br>
+      <input type="checkbox" name="reminder" id="no_reminder" value="0">No thank you, I don't want any reminders sent on my break!
       </form>
 
       <h3>What type of reminder messages do you want to receive?: <br></h3>
