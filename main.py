@@ -52,8 +52,10 @@ class MainHandler(webapp2.RequestHandler):
         reminders = Reminder.query().fetch()
         # Gets the current user ID.
         user_id = self.request.get('user')
+        # User logout
+        logout_url = users.create_logout_url('/login')
 
-        template_values = {'timers':timers, 'reminders':reminders, 'user_id':user_id}
+        template_values = {'timers':timers, 'reminders':reminders, 'user_id':user_id, 'logout': logout_url}
         template = jinja_environment.get_template('main.html')
         self.response.write(template.render(template_values))
 
@@ -74,12 +76,12 @@ class LoginHandler(webapp2.RequestHandler):
         user = users.get_current_user()
         if user:
             nickname = user.nickname()
-            logout_url = users.create_logout_url('/')
-            template = jinja_environment.get_template('main.html')
-            greeting = 'Welcome, {}! (<a href="{}">sign out</a>)'.format(nickname, logout_url)
-            user_id = user.user_id()
-            template_values = {'user_id':user_id}
-            self.redirect('/?user=' + user_id)
+            #logout_url = users.create_logout_url('/')
+            #template = jinja_environment.get_template('main.html')
+            #greeting = 'Welcome, {}! (<a href="{}">sign out</a>)'.format(nickname, logout_url)
+            #user_id = user.user_id()
+            #template_values = {'user_id':user_id}
+            self.redirect('/')
             # self.response.write(template.render(template_values))
 
         else:

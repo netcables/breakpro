@@ -24,6 +24,11 @@ h4{
   font-size: 19px;
 }
 
+.logout_link{
+  text-align: right;
+  margin-right: 7%;
+}
+
 .break{
   font-size: 30px;
 }
