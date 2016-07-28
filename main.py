@@ -10,9 +10,11 @@ from google.appengine.ext import ndb
     #message_content = ndb.StringProperty()
 
 class User(ndb.Model):
+    # A user's email address.
     email = ndb.StringProperty()
 
 class Friend(ndb.Model):
+    # A friend
     email = ndb.StringProperty()
     user_id = ndb.StringProperty()
 
@@ -122,16 +124,20 @@ class LoginHandler(webapp2.RequestHandler):
 
 class SettingsHandler(webapp2.RequestHandler):
     def get(self):
-        user_id = str(self.request.get('user'))
-        if Settings.query(Settings.setting_user_id == user_id).fetch():
-            pass
+        user = users.get_current_user()
+        if user:
+            user_id = str(self.request.get('user'))
+            if Settings.query(Settings.setting_user_id == user_id).fetch():
+                pass
 
+            else:
+                new_settings = Settings(setting_user_id=user_id, reminder_halfway=False, reminder_third=False, reminder_fourth=False, snoozes_allowed=1, snoozes_length=5, message_type="nice")
+                new_settings.put()
+
+            template = jinja_environment.get_template('settings.html')
+            self.response.write(template.render())
         else:
-            new_settings = Settings(setting_user_id=user_id, reminder_halfway=False, reminder_third=False, reminder_fourth=False, snoozes_allowed=1, snoozes_length=5, message_type="nice")
-            new_settings.put()
-
-        template = jinja_environment.get_template('settings.html')
-        self.response.write(template.render())
+            self.redirect('/')
 
     def post(self):
         user_id = str(self.request.get('user'))
@@ -157,15 +163,19 @@ class SettingsHandler(webapp2.RequestHandler):
 
 class TimerHandler(webapp2.RequestHandler):
     def get(self):
-        urlsafe_key = self.request.get('key')
+        user = users.get_current_user()
+        if user:
+            urlsafe_key = self.request.get('key')
 
-        timer_key = ndb.Key(urlsafe=urlsafe_key)
-        timer = timer_key.get()
+            timer_key = ndb.Key(urlsafe=urlsafe_key)
+            timer = timer_key.get()
 
-        template_values = {"timer":timer}
+            template_values = {"timer":timer}
 
-        template = jinja_environment.get_template('timer.html')
-        self.response.write(template.render(template_values))
+            template = jinja_environment.get_template('timer.html')
+            self.response.write(template.render(template_values))
+        else:
+            self.redirect('/')
 
     def post(self):
         template_values = {"timer":timer}
@@ -174,33 +184,45 @@ class TimerHandler(webapp2.RequestHandler):
 
 class UserLogHandler(webapp2.RequestHandler):
     def get(self):
-        user_ID = str(self.request.get('user'))
-        timers = Timer.query(Timer.user_id == user_ID).fetch()
-        count = {'value': 1}
+        user = users.get_current_user()
+        if user:
+            user_ID = str(self.request.get('user'))
+            timers = Timer.query(Timer.user_id == user_ID).fetch()
+            count = {'value': 1}
 
-        template = jinja_environment.get_template('user_log.html')
-        template_values = {'timers': timers, 'count': count}
-        self.response.write(template.render(template_values))
+            template = jinja_environment.get_template('user_log.html')
+            template_values = {'timers': timers, 'count': count}
+            self.response.write(template.render(template_values))
+        else:
+            self.redirect('/')
 
 class AlertHandler(webapp2.RequestHandler):
     def get(self):
-
         template = jinja_environment.get_template('alert.html')
         #template_value
         self.response.write(template.render())
 
 class FriendHandler(webapp2.RequestHandler):
     def get(self):
-        email = str(users.get_current_user().email())
-        user_ID = str(self.request.get('user'))
+        user = users.get_current_user()
+        if user:
+                email = str(users.get_current_user().email())
+                user_ID = str(self.request.get('user'))
 
-        template = jinja_environment.get_template('friends.html')
-        friends = Friend.query(Friend.user_id == user_ID).fetch()
-        template_values = {'user_email' : email, 'friends' : friends}
+                template = jinja_environment.get_template('friends.html')
+                friends = Friend.query(Friend.user_id == user_ID).fetch()
+                template_values = {'user_email' : email, 'friends' : friends}
 
-        self.response.write(template.render(template_values))
+                self.response.write(template.render(template_values))
+        else:
+            self.redirect('/')
 
     def post(self):
+        user = users.get_current_user()
+        if user:
+            pass
+        else:
+            self.redirect('/')
 
         friend_email = self.request.get('friend_email')
         user_ID = users.get_current_user().user_id()
