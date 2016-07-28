@@ -7,6 +7,9 @@ var btn = document.getElementById("alert");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
+var snoozeButton = document.getElementById("snooze");
+var okayButton = document.getElementById("ok");
+
 // When the user clicks on the button, open the modal
 function runAlert() {
     modal.style.display = "block";
@@ -25,4 +28,15 @@ window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
+}
+snoozeButton.onclick = function() {
+  snd.pause();
+  sound.currentTime = 0;
+  breakTimer(1, 1, 1)
+  modal.style.display = "none";
+}
+okayButton.onclick = function() {
+  snd.pause();
+  sound.currentTime = 0;
+  modal.style.display = "none";
 }
