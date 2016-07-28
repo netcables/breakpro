@@ -30,6 +30,7 @@ function initializeClock(id, endtime, snooze_length, snoozes) {
   // The total amount of time that the user has gone over their limit.
   var total_time_over = 0;
 
+
   // This function updates the clock every second.
   function updateClock() {
     var t = getTimeRemaining(endtime);
@@ -57,9 +58,45 @@ function initializeClock(id, endtime, snooze_length, snoozes) {
   var timeinterval = setInterval(updateClock, 1000);
 }
 
+function setreminder(deadline, reminder_type) {
+  alert_deadline = deadline;
+  reminder_point = reminder_type;
+  if (reminder_point=="half"){
+    setTimeout(function(){ alert("Your break is half way over!"); }, alert_deadline);
+  }
+  else if (reminder_point=="third") {
+    setTimeout(function(){ alert("You only have a third of your break left!"); }, alert_deadline);
+  }
+  else if (reminder_point=="fourth"){
+    setTimeout(function(){ alert("You only have a fourth of your break left!"); }, alert_deadline);
+  }
+  else {
+
+  }
+}
+
 function breakTimer(inputminutes, snooze_length, snoozes) {
   var deadline = new Date(Date.parse(new Date()) + inputminutes * 60 * 1000);
   initializeClock('clockdiv', deadline, snooze_length, snoozes);
+  var snooze = {
+    half : false,
+    third : false,
+    fourth: true
+  };
+
+  if (snooze.half) {
+      var deadline2 = inputminutes * 60 * 1000/2;
+      setreminder(deadline2,"half");
+  }
+  if (snooze.third){
+      var deadline3 = 2 * (inputminutes * 60 * 1000/3);
+      setreminder(deadline3,"third");
+  }
+  if (snooze.fourth){
+      var deadline4 = 3 * (inputminutes * 60 * 1000/4);
+      setreminder(deadline4,"fourth");
+
+  }
 }
 
 // The value here is the amount of minutes that the timer will run for.
