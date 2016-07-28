@@ -80,8 +80,8 @@ function breakTimer(inputminutes, snooze_length, snoozes) {
   initializeClock('clockdiv', deadline, snooze_length, snoozes);
   var snooze = {
     half : false,
-    third : true,
-    fourth: false
+    third : false,
+    fourth: true
   };
 
   if (snooze.half) {
@@ -89,11 +89,11 @@ function breakTimer(inputminutes, snooze_length, snoozes) {
       setreminder(deadline2,"half");
   }
   if (snooze.third){
-      var deadline3 = inputminutes * 60 * 1000/3;
+      var deadline3 = 2 * (inputminutes * 60 * 1000/3);
       setreminder(deadline3,"third");
   }
   if (snooze.fourth){
-      var deadline4 = inputminutes * 60 * 1000/4;
+      var deadline4 = 3 * (inputminutes * 60 * 1000/4);
       setreminder(deadline4,"fourth");
 
   }
