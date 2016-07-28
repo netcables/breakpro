@@ -14,7 +14,7 @@ class User(ndb.Model):
 
 class Friend(ndb.Model):
     email = ndb.StringProperty()
-    user_id = user_id = ndb.StringProperty()
+    user_id = ndb.StringProperty()
 
 class Timer(ndb.Model):
     # The task listed with a timer.
@@ -178,15 +178,28 @@ class AlertHandler(webapp2.RequestHandler):
 
 class FriendHandler(webapp2.RequestHandler):
     def get(self):
+        email = str(users.get_current_user().email())
+        user_ID = str(self.request.get('user'))
 
         template = jinja_environment.get_template('friends.html')
-        #template_values?
-        self.response.write(template.render())
+        friends = Friend.query(Friend.user_id == user_ID).fetch()
+        template_values = {'user_email' : email, 'friends' : friends}
 
-    #def post(self):
-        #users = User.query().fetch()
-        #if()
+        self.response.write(template.render(template_values))
 
+    def post(self):
+
+        friend_email = self.request.get('friend_email')
+        user_ID = users.get_current_user().user_id()
+        email = str(users.get_current_user().email())
+
+        new_friend = Friend(email = friend_email, user_id = user_ID)
+        new_friend.put()
+
+        template = jinja_environment.get_template('friends.html')
+        friends = Friend.query(Friend.user_id == user_ID).fetch()
+        template_values = {'user_email' : email, 'friends' : friends}
+        self.response.write(template.render(template_values))
 
 
 app = webapp2.WSGIApplication([

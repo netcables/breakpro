@@ -12,9 +12,16 @@
     <br><br><br>
     <p>Your Friends</p>
 
+    <br>
+    <br>
+
+    {% for friend in friends%}
+      {{friend.email}} <br>
+    {% endfor %}
 
     <form method="post" action ="">
-    <p><input class = "submit_button" type="submit" value="Add Friends"></p><br>
+      <input type="text" name="friend_email"><br><br>
+      <input class = "submit_button" type="submit" value="Add Friend"><br>
     </form>
   </body>
 
