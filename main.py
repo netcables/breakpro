@@ -50,6 +50,9 @@ class MainHandler(webapp2.RequestHandler):
         user_id = users.get_current_user().user_id()
         # User logout
         logout_url = users.create_logout_url('/login')
+        # New user in the database
+        new_user = User(email = email)
+        new_user.put()
 
         template_values = {'timers':timers, 'user_id':user_id, 'logout': logout_url, 'email': email}
         template = jinja_environment.get_template('main.html')
@@ -76,7 +79,6 @@ class LoginHandler(webapp2.RequestHandler):
 
         else:
             login_url = users.create_login_url('/')
-
 
         template = jinja_environment.get_template('log_in.html')
         template_values = {'login': login_url}
@@ -118,7 +120,6 @@ class TimerHandler(webapp2.RequestHandler):
         self.response.write(template.render(template_values))
 
     def post(self):
-
         template_values = {"timer":timer}
         template = jinja_environment.get_template('timer.html')
         self.response.write(template_render(template_values))
@@ -127,9 +128,10 @@ class UserLogHandler(webapp2.RequestHandler):
     def get(self):
         user_ID = str(self.request.get('user'))
         timers = Timer.query(Timer.user_id == user_ID).fetch()
+        count = {'value': 1}
 
         template = jinja_environment.get_template('user_log.html')
-        template_values = {'timers': timers}
+        template_values = {'timers': timers, 'count': count}
         self.response.write(template.render(template_values))
 
 class AlertHandler(webapp2.RequestHandler):
@@ -145,6 +147,11 @@ class FriendHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template('friends.html')
         #template_values?
         self.response.write(template.render())
+
+    #def post(self):
+        #users = User.query().fetch()
+        #if()
+
 
 
 app = webapp2.WSGIApplication([

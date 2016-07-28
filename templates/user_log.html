@@ -10,7 +10,6 @@
   <body>
     <h1> break<span>pro</span> <h1>
     <div class="line-separator"></div>
-    <br>
     <h2>how you've been spending your breaks:</h2>
     <br>
     <div class = "table_container">
@@ -24,6 +23,7 @@
           <th class = "first_row"> Number of Snoozes</th>
           <th class = "first_row"> Total Time on breakpro</th>
         </tr>
+
         <tr class = "logs">
           <td>#1</td>
           <td>7/25/16</td>
@@ -46,33 +46,43 @@
           <td>20 mins</td>
         </tr>
 
+        {% for timer in timers%}
+        <tr class = "logs">
+          <td>#{{count.value}}</td>
+          <td>7/25/16</td>
+          <td>{{timer.timer_task}}</td>
+          <td>{{timer.reminder_frequency}}</td>
+          <td>{{timer.break_length}} mins</td>
+        </tr>
+
+        {% endfor %}
+
       </table>
       <br>
       <br>
       <br>
       <br>
-
     </div>
-    <br>
-    <br>
-    <br>
-    {% for timer in timers %}
-      <h3> {{timer.timer_task}}</h3>
-    {% endfor%}
+
     <br>
     <br>
     <br>
     <br>
+    <div class="line-separator"></div>
+    <br>
+    <div class="container_two">
+      <div class="section_two">
+        <div class="section_two_over">
+          <a href="/"><img src="/images/home.png" width="85"></a>
+        </div>
+      </div>
+    </div>
+    <div class="clear"></div>
     <br>
     <br>
     <br>
     <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+
 
     </body>
 </html>
