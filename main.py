@@ -28,14 +28,19 @@ class Timer(ndb.Model):
     # The user id associated with a timer.
     user_id = ndb.StringProperty()
 
-
 class Settings(ndb.Model):
-    # The amount of reminders set.
-    reminder_frequency_setting = ndb.StringProperty()
-    # The type of reminders set.
-    reminder_type_setting = ndb.StringProperty()
+    # If the user wants a reminder when their break is halfway over.
+    reminder_halfway = ndb.BooleanProperty()
+    # If the user wants a reminder when they have a third of their break left.
+    reminder_third = ndb.BooleanProperty()
+    # If the user wants a reminder when they have a fourth of their break left.
+    reminder_fourth = ndb.BooleanProperty()
     # The amount of snoozes allowed.
-    reminder_snooze_setting = ndb.IntegerProperty()
+    snoozes_allowed = ndb.IntegerProperty()
+    # The length of a snooze.
+    snoozes_length = ndb.IntegerProperty()
+    # The type of reminder messages.
+    message_type = ndb.StringProperty()
     # The user associated with a set of settings.
     setting_user_id = ndb.StringProperty()
 
@@ -97,22 +102,36 @@ class LoginHandler(webapp2.RequestHandler):
 class SettingsHandler(webapp2.RequestHandler):
     def get(self):
         user_id = str(self.request.get('user'))
-        existing_settings = Settings.query(Settings.setting_user_id == user_id).fetch()
+        if Settings.query(Settings.setting_user_id == user_id).fetch():
+            pass
 
-        template_values = {"settings":existing_settings}
+        else:
+            new_settings = Settings(setting_user_id=user_id, reminder_halfway=False, reminder_third=False, reminder_fourth=False, snoozes_allowed=1, snoozes_length=5, message_type="nice")
+            new_settings.put()
 
         template = jinja_environment.get_template('settings.html')
         self.response.write(template.render())
 
     def post(self):
         user_id = str(self.request.get('user'))
-        reminder_amount = str(self.request.get('reminder'))
+        reminder_halfway = self.request.get('reminder_half')!= ''
+        reminder_third = self.request.get('reminder_third')!= ''
+        reminder_fourth = self.request.get('reminder_fourth')!= ''
+        snoozes_allowed = int(self.request.get('snoozes_allowed'))
+        snoozes_length = int(self.request.get('snoozes_length'))
         message_type = str(self.request.get('message_type'))
-        snoozes_allowed = int(self.request.get('snoozes'))
 
-        existing_settings = Settings.query(Settings.setting_user_id == user_id).fetch()
-        existing_settings = Settings(reminder_frequency_setting=reminder_amount, reminder_type_setting=message_type, reminder_snooze_setting=snoozes_allowed, setting_user_id=user_id)
-        existing_settings.put()
+        existing_settings = Settings.query(Settings.setting_user_id == user_id).get()
+        user_settings = existing_settings
+        user_settings.setting_user_id = user_id
+        user_settings.reminder_halfway = reminder_halfway
+        user_settings.reminder_third = reminder_third
+        user_settings.reminder_fourth = reminder_fourth
+        user_settings.snoozes_allowed = snoozes_allowed
+        user_settings.snoozes_length = snoozes_length
+        user_settings.message_type = message_type
+
+        user_settings.put()
 
         self.redirect('/settings?user=' + user_id)
 
