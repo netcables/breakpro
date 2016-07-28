@@ -17,6 +17,13 @@ h2 span {
  color: rgb(251, 120, 53);
 }
 
+.email{
+  position: absolute;
+  top: 9%;
+  left: 3%;
+  font-size: 22px;
+}
+
 .line-separator{
 height:5px;
 border-bottom:5px solid rgb(25, 216, 227);

@@ -16,6 +16,13 @@ h2{
   text-align: center;
 }
 
+.email{
+  position: absolute;
+  top: 9%;
+  left: 3%;
+  font-size: 22px;
+}
+
 .line-separator{
   height:5px;
   border-bottom:5px solid rgb(25, 216, 227);

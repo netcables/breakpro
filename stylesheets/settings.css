@@ -18,6 +18,12 @@ h2 span {
 h3{
   font-size: 23px;
 }
+.email{
+  position: absolute;
+  top: 9%;
+  left: 3%;
+  font-size: 22px;
+}
 
 .line-separator{
 height:5px;

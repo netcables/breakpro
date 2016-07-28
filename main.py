@@ -127,6 +127,7 @@ class LoginHandler(webapp2.RequestHandler):
 class SettingsHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
+        email = str(users.get_current_user().email())
         if user:
             user_id = str(self.request.get('user'))
             if Settings.query(Settings.setting_user_id == user_id).fetch():
@@ -137,7 +138,8 @@ class SettingsHandler(webapp2.RequestHandler):
                 new_settings.put()
 
             template = jinja_environment.get_template('settings.html')
-            self.response.write(template.render())
+            template_values = {'email' : email}
+            self.response.write(template.render(template_values))
         else:
             self.redirect('/')
 
@@ -186,6 +188,7 @@ class TimerHandler(webapp2.RequestHandler):
 
 class UserLogHandler(webapp2.RequestHandler):
     def get(self):
+        email = str(users.get_current_user().email())
         user = users.get_current_user()
         if user:
             user_ID = str(self.request.get('user'))
@@ -193,7 +196,7 @@ class UserLogHandler(webapp2.RequestHandler):
             count = {'value': 1}
 
             template = jinja_environment.get_template('user_log.html')
-            template_values = {'timers': timers, 'count': count}
+            template_values = {'timers': timers, 'count': count, 'email' : email}
             self.response.write(template.render(template_values))
         else:
             self.redirect('/')
