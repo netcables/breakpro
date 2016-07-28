@@ -38,7 +38,7 @@ function initializeClock(id, endtime, reminderinterval, remindercount) {
     minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
     secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
 
-    if (t.total === 0) {
+    if (t.total <= 0) {
       clearInterval(timeinterval);
       if (reminders_remaining === 0) {
         alert("Alright! Enjoy your work!  Remember to take productive breaks!");

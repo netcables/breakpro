@@ -33,7 +33,7 @@ class Settings(ndb.Model):
     # The amount of snoozes allowed.
     reminder_snooze_setting = ndb.IntegerProperty()
     # The user associated with a set of settings.
-    user_key = ndb.KeyProperty(kind=User)
+    setting_user_id = ndb.StringProperty()
 
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_environment = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir))
@@ -86,10 +86,11 @@ class LoginHandler(webapp2.RequestHandler):
 class SettingsHandler(webapp2.RequestHandler):
     def get(self):
         user_id = str(self.request.get('user'))
-        #existing_settings = Settings.query(Settings.setting_user_id == user_id).fetch()
+        existing_settings = Settings.query(Settings.setting_user_id == user_id).fetch()
+
+        template_values = {"settings":existing_settings}
 
         template = jinja_environment.get_template('settings.html')
-        #template_values?
         self.response.write(template.render())
 
     def post(self):
@@ -98,8 +99,9 @@ class SettingsHandler(webapp2.RequestHandler):
         message_type = str(self.request.get('message_type'))
         snoozes_allowed = int(self.request.get('snoozes'))
 
-        new_settings = Settings(reminder_frequency_setting=reminder_amount, reminder_type_setting=message_type, reminder_snooze_setting=snoozes_allowed, setting_user_id=user_id)
-        new_settings.put()
+        existing_settings = Settings.query(Settings.setting_user_id == user_id).fetch()
+        existing_settings = Settings(reminder_frequency_setting=reminder_amount, reminder_type_setting=message_type, reminder_snooze_setting=snoozes_allowed, setting_user_id=user_id)
+        existing_settings.put()
 
         self.redirect('/settings?user=' + user_id)
 

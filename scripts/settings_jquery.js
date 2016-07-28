@@ -12,10 +12,6 @@ function setup() {
     var fourth = $(this).prop('checked')
     console.log(fourth)
   });
-  $("input:checkbox[id=no_reminder]").click(function() {
-    var no_reminder = $(this).prop('checked')
-    console.log(no_reminder)
-  });
   $("input:radio[name=message_type]").click(function() {
     var message_type = $(this).val();
     console.log(message_type)
@@ -23,15 +19,5 @@ function setup() {
   $("input:radio[name=snoozes]").click(function() {
     var snoozes = $(this).val();
     console.log(snoozes)
-  });
-}
-function validateForm() {
-  $('.form-field').each(function() {
-    if ( $(this).val() === '' ) {
-      return false
-    }
-    else {
-      return true;
-    }
   });
 }
