@@ -38,13 +38,15 @@ margin-right: auto;
 
 
 .section_two{
+  position: absolute;
+  top: 40px;
+  right: 110px;
+
   background-color: rgb(25, 216, 227);
   height: 180px;
   width: 180px;
   border-radius: 25px;
   text-align: center;
-  float: right;
-  margin-right: 90px;
 }
 .section_two_over{
   background-color: white;

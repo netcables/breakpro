@@ -11,10 +11,12 @@ from google.appengine.ext import ndb
 
 class User(ndb.Model):
     email = ndb.StringProperty()
+    user_id = ndb.StringProperty()
 
 class Friend(ndb.Model):
     email = ndb.StringProperty()
     user_id = ndb.StringProperty()
+    friend_id = ndb.StringProperty()
 
 class Timer(ndb.Model):
     # The task listed with a timer.
@@ -73,7 +75,7 @@ class MainHandler(webapp2.RequestHandler):
             empty = 'hello'
 
         else:
-            new_user = User(email = email)
+            new_user = User(email = email, user_id = users.get_current_user().user_id())
             new_user.put()
 
         template_values = {'timers':timers, 'user_id':user_id, 'logout': logout_url, 'email': email}
@@ -205,8 +207,10 @@ class FriendHandler(webapp2.RequestHandler):
         friend_email = self.request.get('friend_email')
         user_ID = users.get_current_user().user_id()
         email = str(users.get_current_user().email())
+        friend_user = User.query(User.email == friend_email).get()
+        friend_id = friend_user.user_id
 
-        new_friend = Friend(email = friend_email, user_id = user_ID)
+        new_friend = Friend(email = friend_email, user_id = user_ID, friend_id = friend_id)
         new_friend.put()
 
         template = jinja_environment.get_template('friends.html')

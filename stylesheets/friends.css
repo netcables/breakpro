@@ -61,13 +61,17 @@ a:hover {
 
 
 .section_two{
+  position: absolute;
+  top: 45px;
+  right: 110px;
+
   background-color: rgb(25, 216, 227);
   height: 180px;
   width: 180px;
   border-radius: 25px;
   text-align: center;
-  float: right;
-  margin-right: 135px;
+  /*float: right;
+  margin-right: 135px;*/
 }
 .section_two_over{
   background-color: white;
