@@ -15,6 +15,9 @@ h2{
 h2 span {
  color: rgb(251, 120, 53);
 }
+h3{
+  font-size: 23px;
+}
 
 .line-separator{
 height:5px;
@@ -28,19 +31,20 @@ margin-right: auto;
   background-color: rgba(255,255,255,0.4);
   border: 5px solid orange;
   border-radius: 25px;
-  margin-left: 350px;
-  margin-right: 350px;
+  margin-left: 290px;
+  margin-right: 290px;
 }
 
 .settings_content{
   text-align: center;
+  font-size: 20px;
 }
 
 
 .section_two{
   position: absolute;
-  top: 40px;
-  right: 110px;
+  top: 25px;
+  right: 70px;
 
   background-color: rgb(25, 216, 227);
   height: 180px;
@@ -66,4 +70,17 @@ img{
 
 .clear{
   clear: both;
+}
+
+#save{
+  font-size: 21px;
+  background-color: rgb(94, 230, 237);
+  border: 2px solid rgb(25, 219, 230);
+  border-radius: 10px;
+}
+#save {background-color: rgb(25, 219, 230);}
+
+#save {
+  background-color: rgb(25, 219, 230);
+  transform: translateY(4px);
 }
