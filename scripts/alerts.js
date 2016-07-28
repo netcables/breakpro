@@ -30,8 +30,6 @@ window.onclick = function(event) {
     }
 }
 snoozeButton.onclick = function() {
-  snd.pause();
-  sound.currentTime = 0;
   breakTimer(1, 1, 1)
   modal.style.display = "none";
 }
