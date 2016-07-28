@@ -41,7 +41,7 @@ function initializeClock(id, endtime, reminderinterval, remindercount) {
     if (t.total <= 0) {
       clearInterval(timeinterval);
       if (reminders_remaining === 0) {
-        alert("Alright! Enjoy your work!  Remember to take productive breaks!");
+        alert("Alright! Time to get back to work!  Remember to take productive breaks!");
       }
       else if (reminders_remaining === 1) {
         alert("This is your final reminder! YOUR BREAK IS OVER!");
