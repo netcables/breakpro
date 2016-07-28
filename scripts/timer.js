@@ -14,7 +14,7 @@ function getTimeRemaining(endtime) {
 }
 
 // This function starts up a countdown clock.
-function initializeClock(id, endtime, reminderinterval, remindercount) {
+function initializeClock(id, endtime, snooze_length, snoozes) {
   // The html element that the clock is shown within.
   var clock = document.getElementById(id);
   // Location of minutes.
@@ -22,9 +22,9 @@ function initializeClock(id, endtime, reminderinterval, remindercount) {
   // Location of seconds.
   var secondsSpan = clock.querySelector('.seconds');
   // The amount of time between reminders.
-  var reminder_separation = reminderinterval;
+  var reminder_separation = snooze_length;
   // The amount of reminders remaining.
-  var reminders_remaining = remindercount;
+  var reminders_remaining = snoozes;
   // Check if the user has gone over their initial time.
   var overtime = false;
   // The total amount of time that the user has gone over their limit.
@@ -57,9 +57,9 @@ function initializeClock(id, endtime, reminderinterval, remindercount) {
   var timeinterval = setInterval(updateClock, 1000);
 }
 
-function breakTimer(inputminutes, reminderinterval, remindercount) {
+function breakTimer(inputminutes, snooze_length, snoozes) {
   var deadline = new Date(Date.parse(new Date()) + inputminutes * 60 * 1000);
-  initializeClock('clockdiv', deadline, reminderinterval, remindercount);
+  initializeClock('clockdiv', deadline, snooze_length, snoozes);
 }
 
 // The value here is the amount of minutes that the timer will run for.
