@@ -1,6 +1,7 @@
 import webapp2
 import jinja2
 import os
+import logging
 
 from google.appengine.api import users
 from google.appengine.ext import ndb
@@ -44,7 +45,9 @@ class MainHandler(webapp2.RequestHandler):
         # Gets all of the timers in the database.
         timers = Timer.query().fetch()
         # Gets the current user ID.
-        user_id = self.request.get('user')
+        # user_id = self.request.get('user')
+        logging.info(help(users.get_current_user()))
+        user_id = users.get_current_user().user_id()
         # User logout
         logout_url = users.create_logout_url('/login')
 
@@ -53,7 +56,7 @@ class MainHandler(webapp2.RequestHandler):
         self.response.write(template.render(template_values))
 
     def post(self):
-        user_id = str(self.request.get('user'))
+        user_id = users.get_current_user().user_id()
         task = str(self.request.get('task'))
         break_length = int(self.request.get('break_length'))
         reminder_amount = int(self.request.get('reminder_amount'))
@@ -120,11 +123,12 @@ class TimerHandler(webapp2.RequestHandler):
 
 class UserLogHandler(webapp2.RequestHandler):
     def get(self):
+        user_ID = str(self.request.get('user'))
+        timers = Timer.query(Timer.user_id == user_ID).fetch()
 
-        settings = self.request
         template = jinja_environment.get_template('user_log.html')
-        #template_values?
-        self.response.write(template.render())
+        template_values = {'timers': timers}
+        self.response.write(template.render(template_values))
 
 class AlertHandler(webapp2.RequestHandler):
     def get(self):
