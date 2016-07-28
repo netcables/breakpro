@@ -21,10 +21,18 @@ class Timer(ndb.Model):
     timer_task = ndb.StringProperty()
     # The length of a break.
     break_length = ndb.IntegerProperty()
-    # The amount of reminders requested after time is up.
+    # The amount of snoozes allowed..
     reminder_amount = ndb.IntegerProperty()
-    # The amount of time between reminders.
+    # The length of each snooze.
     reminder_frequency = ndb.IntegerProperty()
+    # If the user wants a reminder at the break's halfway point.
+    halfway_left = ndb.BooleanProperty()
+    # If the user wants a reminder when there is a third of the time left.
+    third_left = ndb.BooleanProperty()
+    # If the user wants a reminder when there is a quarter of the time left.
+    quarter_left = ndb.BooleanProperty()
+    # The type of messages that a user wants to receive.
+    timer_personality = ndb.StringProperty()
     # The user id associated with a timer.
     user_id = ndb.StringProperty()
 
@@ -82,13 +90,16 @@ class MainHandler(webapp2.RequestHandler):
             new_settings.put()
             user_settings = Settings.query(Settings.setting_user_id == user_id).get()
 
-
         task = str(self.request.get('task'))
         break_length = int(self.request.get('break_length'))
         reminder_amount = user_settings.snoozes_allowed
         reminder_frequency = user_settings.snoozes_length
+        halfway_reminder = user_settings.reminder_halfway
+        thirdleft_reminder = user_settings.reminder_third
+        fourthleft_reminder = user_settings.reminder_fourth
+        timer_message = user_settings.message_type
 
-        new_timer = Timer(timer_task=task, break_length=break_length, reminder_amount=reminder_amount, reminder_frequency=reminder_frequency, user_id=user_id)
+        new_timer = Timer(timer_task=task, break_length=break_length, reminder_amount=reminder_amount, reminder_frequency=reminder_frequency, halfway_left=halfway_reminder, third_left=thirdleft_reminder, quarter_left=fourthleft_reminder, timer_personality=timer_message, user_id=user_id)
         new_timer.put()
 
         self.redirect('/timer?user=' + user_id + '&key=' + new_timer.key.urlsafe())
