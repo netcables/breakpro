@@ -74,6 +74,14 @@ class MainHandler(webapp2.RequestHandler):
 
     def post(self):
         user_id = users.get_current_user().user_id()
+        if Settings.query(Settings.setting_user_id == user_id).fetch():
+            user_settings = Settings.query(Settings.setting_user_id == user_id).get()
+
+        else:
+            new_settings = Settings(setting_user_id=user_id, reminder_halfway=False, reminder_third=False, reminder_fourth=False, snoozes_allowed=1, snoozes_length=5, message_type="nice")
+            new_settings.put()
+            user_settings = Settings.query(Settings.setting_user_id == user_id).get()
+
         task = str(self.request.get('task'))
         break_length = int(self.request.get('break_length'))
         reminder_amount = int(self.request.get('reminder_amount'))
@@ -121,8 +129,7 @@ class SettingsHandler(webapp2.RequestHandler):
         snoozes_length = int(self.request.get('snoozes_length'))
         message_type = str(self.request.get('message_type'))
 
-        existing_settings = Settings.query(Settings.setting_user_id == user_id).get()
-        user_settings = existing_settings
+        user_settings = Settings.query(Settings.setting_user_id == user_id).get()
         user_settings.setting_user_id = user_id
         user_settings.reminder_halfway = reminder_halfway
         user_settings.reminder_third = reminder_third
