@@ -107,6 +107,7 @@ h4{
   font-size: 100px;
   font-family: digital-clock-font;
   color: rgb(25, 216, 227);
+  text-shadow: .2px .2px 25px blue;
 }
 
 .clear{

@@ -79,9 +79,9 @@ function breakTimer(inputminutes, snooze_length, snoozes) {
   var deadline = new Date(Date.parse(new Date()) + inputminutes * 60 * 1000);
   initializeClock('clockdiv', deadline, snooze_length, snoozes);
   var snooze = {
-    half : false,
+    half : true,
     third : false,
-    fourth: true
+    fourth: false
   };
 
   if (snooze.half) {
