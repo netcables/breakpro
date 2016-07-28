@@ -17,7 +17,6 @@ function runAlert() {
     snd.play();
 }
 
-
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
     modal.style.display = "none";
@@ -30,11 +29,9 @@ window.onclick = function(event) {
     }
 }
 snoozeButton.onclick = function() {
-  breakTimer(1, 1, 1)
+  breakTimer(1, 1, 1);
   modal.style.display = "none";
 }
 okayButton.onclick = function() {
-  snd.pause();
-  sound.currentTime = 0;
   modal.style.display = "none";
 }
