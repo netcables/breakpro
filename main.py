@@ -102,9 +102,12 @@ class LoginHandler(webapp2.RequestHandler):
 class SettingsHandler(webapp2.RequestHandler):
     def get(self):
         user_id = str(self.request.get('user'))
-        existing_settings = Settings.query(Settings.setting_user_id == user_id).fetch()
+        if Settings.query(Settings.setting_user_id == user_id).fetch():
+            pass
 
-        template_values = {"settings":existing_settings}
+        else:
+            new_settings = Settings(setting_user_id=user_id, reminder_halfway=False, reminder_third=False, reminder_fourth=False, snoozes_allowed=1, snoozes_length=5, message_type="nice")
+            new_settings.put()
 
         template = jinja_environment.get_template('settings.html')
         self.response.write(template.render())
@@ -118,9 +121,17 @@ class SettingsHandler(webapp2.RequestHandler):
         snoozes_length = int(self.request.get('snoozes_length'))
         message_type = str(self.request.get('message_type'))
 
-        existing_settings = Settings.query(Settings.setting_user_id == user_id).fetch()
-        existing_settings = Settings(setting_user_id=user_id, reminder_halfway=reminder_halfway, reminder_third=reminder_third, reminder_fourth=reminder_fourth, snoozes_allowed=snoozes_allowed, snoozes_length=snoozes_length, message_type=message_type)
-        existing_settings.put()
+        existing_settings = Settings.query(Settings.setting_user_id == user_id).get()
+        user_settings = existing_settings
+        user_settings.setting_user_id = user_id
+        user_settings.reminder_halfway = reminder_halfway
+        user_settings.reminder_third = reminder_third
+        user_settings.reminder_fourth = reminder_fourth
+        user_settings.snoozes_allowed = snoozes_allowed
+        user_settings.snoozes_length = snoozes_length
+        user_settings.message_type = message_type
+
+        user_settings.put()
 
         self.redirect('/settings?user=' + user_id)
 
