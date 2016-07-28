@@ -41,6 +41,11 @@ margin-right: auto;
   text-align: center;
   font-size: 18px;
 }
+
+.friend_email{
+  font-size: 21px;
+}
+
 a:link{
   color: black;
   font-size: 18px;

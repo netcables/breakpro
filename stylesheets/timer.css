@@ -115,13 +115,15 @@ h4{
 }
 
 .section_two{
+  position: absolute;
+  top: 25px;
+  right: 70px;
+
   background-color: rgb(25, 216, 227);
   height: 180px;
   width: 180px;
   border-radius: 25px;
   text-align: center;
-  float: right;
-  margin-right: 130px;
 }
 .section_two_over{
   background-color: white;

@@ -31,7 +31,7 @@
       <br>
 
       {% for friend in friends%}
-        {{friend.email}} <br>
+      <div class = "friend_email">{{friend.email}}</div>
         <h4><a href="/user_log?user={{friend.friend_id}}">See your friend's log</a></h4>
         <br>
       {% endfor %}
