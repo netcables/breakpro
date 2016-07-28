@@ -65,7 +65,7 @@ class MainHandler(webapp2.RequestHandler):
         # user_id = self.request.get('user')
         user_id = users.get_current_user().user_id()
         # User logout
-        logout_url = users.create_logout_url('/login')
+        logout_url = users.create_logout_url('/')
         # New user in the database
         empty = 'empty_string'
 
@@ -108,11 +108,12 @@ class LoginHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         if user:
+            login_url = users.create_login_url('/home')
             nickname = user.nickname()
-            self.redirect('/')
+            self.redirect('/home')
 
         else:
-            login_url = users.create_login_url('/')
+            login_url = users.create_login_url('/home')
 
         template = jinja_environment.get_template('log_in.html')
         template_values = {'login': login_url}
@@ -215,8 +216,8 @@ class FriendHandler(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler),
-    ('/login', LoginHandler),
+    ('/home', MainHandler),
+    ('/', LoginHandler),
     ('/settings', SettingsHandler),
     ('/timer',TimerHandler),
     ('/user_log', UserLogHandler),
