@@ -22,8 +22,9 @@ h3{
 }
 .email{
   position: absolute;
-  top: 16%;
+  top: 9%;
   left: 3%;
+  font-size: 22px;
 }
 h4{
   font-size: 19px;
@@ -108,8 +109,8 @@ img{
   background-color: rgba(255,255,255,0.4);
   border: 5px solid orange;
   border-radius: 25px;
-  margin-left: 350px;
-  margin-right: 350px;
+  margin-left: 280px;
+  margin-right: 280px;
 }
 
 .break_content{
@@ -127,4 +128,16 @@ img{
 .submit_button:active {
   background-color: rgb(25, 219, 230);
   transform: translateY(4px);
+}
+
+a:link{
+  color: black;
+  font-size: 23px;
+  font-weight: bold;
+}
+a:visited {
+    color: black;
+}
+a:hover {
+    color: orange;
 }

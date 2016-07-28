@@ -10,24 +10,25 @@
 
   <body>
     <div class= "top_bar">
-      <h1> break<span>pro</span> <h1>
-        <div class="line-separator"></div>
+      <h1> break<span>pro</span> </h1>
+      <div class="line-separator"></div>
+      <h4 class ="email"> {{email}}</h4>
     </div>
-    <h4 class ="email"> {{email}}</h4>
+    <br>
     <div class = "container">
-      <div class = "section_one">
+      <div class = "section_one" id="pops">
          <h2>your <span>settings</span>:</h2>
          <div class = "section_over">
            <br><br><a href="settings?user={{user_id}}"><img src="/images/settings.png" width="165"></a>
          </div>
       </div>
-      <div class = "section_two">
+      <div class = "section_two" id="pops">
         <h2>your <span>logs</span>:</h2>
         <div class = "section_over">
           <br><br><a href="user_log?user={{user_id}}"><img src="/images/logs.png" width="185"></a>
         </div>
       </div>
-      <div class = "section_three">
+      <div class = "section_three" id="pops">
         <h2>your <span>friends</span>:</h2>
         <div class = "section_over">
           <br><br><a href="friends?user={{user_id}}"><img src="/images/friends.png" width="185"></a>
@@ -59,7 +60,6 @@
 
         <h3>How frequently do you want to be reminded?</h3>
         <h4>(I want to recieve an alert every 'n' minutes): <input type="number" min="0" name="reminder_frequency"></h4><br>
-
 
         <p><input class = "submit_button" type="submit" value="Start Timer"></p><br>
 

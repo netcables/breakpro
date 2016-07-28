@@ -54,3 +54,32 @@ td, th {
 }
 
 .logs:hover {background-color: rgb(140, 237, 242)}
+
+.section_two{
+  background-color: rgb(25, 216, 227);
+  height: 180px;
+  width: 180px;
+  border-radius: 25px;
+  text-align: center;
+  float: right;
+  margin-right: 135px;
+}
+.section_two_over{
+  background-color: white;
+  height: 120px;
+  width: 120px;
+  margin-left: 30px;
+  margin-top: 33px;
+  border-radius: 25px;
+}
+
+img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 12px;
+}
+
+.clear{
+  clear: both;
+}
