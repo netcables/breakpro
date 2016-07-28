@@ -25,14 +25,13 @@ function setup() {
     console.log(snoozes)
   });
 }
-function check_form(){
-    var flag = true;
-    $('form .required').each(function(){
-        if ($(this).val() == ""){
-            show_dialog('Please enter a value for ' + $(this).attr('name'));
-            flag =  false;
-        }
-    });
-
-    return flag;
+function validateForm() {
+  $('.form-field').each(function() {
+    if ( $(this).val() === '' ) {
+      return false
+    }
+    else {
+      return true;
+    }
+  });
 }
