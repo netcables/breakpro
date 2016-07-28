@@ -82,10 +82,11 @@ class MainHandler(webapp2.RequestHandler):
             new_settings.put()
             user_settings = Settings.query(Settings.setting_user_id == user_id).get()
 
+
         task = str(self.request.get('task'))
         break_length = int(self.request.get('break_length'))
-        reminder_amount = int(self.request.get('reminder_amount'))
-        reminder_frequency = int(self.request.get('reminder_frequency'))
+        reminder_amount = user_settings.snoozes_allowed
+        reminder_frequency = user_settings.snoozes_length
 
         new_timer = Timer(timer_task=task, break_length=break_length, reminder_amount=reminder_amount, reminder_frequency=reminder_frequency, user_id=user_id)
         new_timer.put()
