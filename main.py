@@ -24,14 +24,19 @@ class Timer(ndb.Model):
     # The user id associated with a timer.
     user_id = ndb.StringProperty()
 
-
 class Settings(ndb.Model):
-    # The amount of reminders set.
-    reminder_frequency_setting = ndb.StringProperty()
-    # The type of reminders set.
-    reminder_type_setting = ndb.StringProperty()
+    # If the user wants a reminder when their break is halfway over.
+    reminder_halfway = ndb.BooleanProperty()
+    # If the user wants a reminder when they have a third of their break left.
+    reminder_third = ndb.BooleanProperty()
+    # If the user wants a reminder when they have a fourth of their break left.
+    reminder_fourth = ndb.BooleanProperty()
     # The amount of snoozes allowed.
-    reminder_snooze_setting = ndb.IntegerProperty()
+    snoozes_allowed = ndb.IntegerProperty()
+    # The length of a snooze.
+    snoozes_length = ndb.IntegerProperty()
+    # The type of reminder messages.
+    message_type = ndb.StringProperty()
     # The user associated with a set of settings.
     setting_user_id = ndb.StringProperty()
 
@@ -97,12 +102,15 @@ class SettingsHandler(webapp2.RequestHandler):
 
     def post(self):
         user_id = str(self.request.get('user'))
-        reminder_amount = str(self.request.get('reminder'))
+        reminder_halfway = self.request.get('reminder_half')!= ''
+        reminder_third = self.request.get('reminder_third')!= ''
+        reminder_fourth = self.request.get('reminder_fourth')!= ''
+        snoozes_allowed = int(self.request.get('snoozes_allowed'))
+        snoozes_length = int(self.request.get('snoozes_length'))
         message_type = str(self.request.get('message_type'))
-        snoozes_allowed = int(self.request.get('snoozes'))
 
         existing_settings = Settings.query(Settings.setting_user_id == user_id).fetch()
-        existing_settings = Settings(reminder_frequency_setting=reminder_amount, reminder_type_setting=message_type, reminder_snooze_setting=snoozes_allowed, setting_user_id=user_id)
+        existing_settings = Settings(setting_user_id=user_id, reminder_halfway=reminder_halfway, reminder_third=reminder_third, reminder_fourth=reminder_fourth, snoozes_allowed=snoozes_allowed, snoozes_length=snoozes_length, message_type=message_type)
         existing_settings.put()
 
         self.redirect('/settings?user=' + user_id)

@@ -17,7 +17,11 @@ function setup() {
     console.log(message_type)
   });
   $("input:radio[name=snoozes]").click(function() {
-    var snoozes = $(this).val();
+    var snoozes_allowed = $(this).val();
     console.log(snoozes)
+  });
+  $("input:radio[name=snooze_length]").click(function() {
+    var snoozes_length = $(this).val();
+    console.log(snoozes_length)
   });
 }
