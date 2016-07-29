@@ -25,18 +25,10 @@
           <th class = "first_row"> Total Time on breakpro</th>
         </tr>
 
-        <tr class = "logs">
-          <td>#3</td>
-          <td>7/26/16</td>
-          <td>Catch 3 Pikachus</td>
-          <td>2</td>
-          <td>20 mins</td>
-        </tr>
-
         {% for timer in timers%}
         <tr class = "logs">
-          <td>#{{count.value}}</td>
-          <td>7/25/16</td>
+          <td></td>
+          <td>7/29/16</td>
           <td>{{timer.timer_task}}</td>
           <td>{{timer.reminder_frequency}}</td>
           <td>{{timer.break_length}} mins</td>
