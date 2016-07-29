@@ -16,6 +16,13 @@ h2{
   text-align: center;
 }
 
+.email{
+  position: absolute;
+  top: 9%;
+  left: 3%;
+  font-size: 22px;
+}
+
 .line-separator{
   height:5px;
   border-bottom:5px solid rgb(25, 216, 227);
@@ -56,13 +63,15 @@ td, th {
 .logs:hover {background-color: rgb(140, 237, 242)}
 
 .section_two{
+  position: absolute;
+  top: 20px;
+  right: 97px;
+
   background-color: rgb(25, 216, 227);
   height: 180px;
   width: 180px;
   border-radius: 25px;
   text-align: center;
-  float: right;
-  margin-right: 135px;
 }
 .section_two_over{
   background-color: white;

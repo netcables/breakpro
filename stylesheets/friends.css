@@ -17,6 +17,13 @@ h2 span {
  color: rgb(251, 120, 53);
 }
 
+.email{
+  position: absolute;
+  top: 9%;
+  left: 3%;
+  font-size: 22px;
+}
+
 .line-separator{
 height:5px;
 border-bottom:5px solid rgb(25, 216, 227);
@@ -34,6 +41,11 @@ margin-right: auto;
   text-align: center;
   font-size: 18px;
 }
+
+.friend_email{
+  font-size: 21px;
+}
+
 a:link{
   color: black;
   font-size: 18px;
@@ -61,13 +73,17 @@ a:hover {
 
 
 .section_two{
+  position: absolute;
+  top: 45px;
+  right: 110px;
+
   background-color: rgb(25, 216, 227);
   height: 180px;
   width: 180px;
   border-radius: 25px;
   text-align: center;
-  float: right;
-  margin-right: 135px;
+  /*float: right;
+  margin-right: 135px;*/
 }
 .section_two_over{
   background-color: white;

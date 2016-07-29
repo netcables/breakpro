@@ -12,11 +12,13 @@ from google.appengine.ext import ndb
 class User(ndb.Model):
     # A user's email address.
     email = ndb.StringProperty()
+    user_id = ndb.StringProperty()
 
 class Friend(ndb.Model):
     # A friend
     email = ndb.StringProperty()
     user_id = ndb.StringProperty()
+    friend_id = ndb.StringProperty()
 
 class Timer(ndb.Model):
     # The task listed with a timer.
@@ -79,7 +81,7 @@ class MainHandler(webapp2.RequestHandler):
             empty = 'hello'
 
         else:
-            new_user = User(email = email)
+            new_user = User(email = email, user_id = users.get_current_user().user_id())
             new_user.put()
 
         template_values = {'timers':timers, 'user_id':user_id, 'logout': logout_url, 'email': email}
@@ -144,6 +146,7 @@ class LoginHandler(webapp2.RequestHandler):
 class SettingsHandler(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
+        email = str(users.get_current_user().email())
         if user:
             user_id = str(self.request.get('user'))
             if Settings.query(Settings.setting_user_id == user_id).fetch():
@@ -154,7 +157,8 @@ class SettingsHandler(webapp2.RequestHandler):
                 new_settings.put()
 
             template = jinja_environment.get_template('settings.html')
-            self.response.write(template.render())
+            template_values = {'email' : email}
+            self.response.write(template.render(template_values))
         else:
             self.redirect('/')
 
@@ -203,6 +207,7 @@ class TimerHandler(webapp2.RequestHandler):
 
 class UserLogHandler(webapp2.RequestHandler):
     def get(self):
+        email = str(users.get_current_user().email())
         user = users.get_current_user()
         if user:
             user_ID = str(self.request.get('user'))
@@ -210,7 +215,7 @@ class UserLogHandler(webapp2.RequestHandler):
             count = {'value': 1}
 
             template = jinja_environment.get_template('user_log.html')
-            template_values = {'timers': timers, 'count': count}
+            template_values = {'timers': timers, 'count': count, 'email' : email}
             self.response.write(template.render(template_values))
         else:
             self.redirect('/')
@@ -246,8 +251,10 @@ class FriendHandler(webapp2.RequestHandler):
         friend_email = self.request.get('friend_email')
         user_ID = users.get_current_user().user_id()
         email = str(users.get_current_user().email())
+        friend_user = User.query(User.email == friend_email).get()
+        friend_id = friend_user.user_id
 
-        new_friend = Friend(email = friend_email, user_id = user_ID)
+        new_friend = Friend(email = friend_email, user_id = user_ID, friend_id = friend_id)
         new_friend.put()
 
         template = jinja_environment.get_template('friends.html')

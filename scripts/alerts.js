@@ -9,29 +9,34 @@ var span = document.getElementsByClassName("close")[0];
 
 var snoozeButton = document.getElementById("snooze");
 var okayButton = document.getElementById("ok");
+var snd;
 
 // When the user clicks on the button, open the modal
 function runAlert() {
     modal.style.display = "block";
-    var snd = new Audio("/sounds/annoying_alarm.wav"); // buffers automatically when created
+    snd = new Audio("/sounds/annoying_alarm.wav"); // buffers automatically when created
     snd.play();
 }
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
     modal.style.display = "none";
+    snd.pause();
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
+        snd.pause();
     }
 }
 snoozeButton.onclick = function() {
-  breakTimer(1, 1, 1);
+  breakTimer(4, 1, 2);
   modal.style.display = "none";
+  snd.pause();
 }
 okayButton.onclick = function() {
   modal.style.display = "none";
+  snd.pause();
 }
