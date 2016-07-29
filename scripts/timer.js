@@ -14,7 +14,7 @@ function getTimeRemaining(endtime) {
 }
 
 // This function starts up a countdown clock.
-function initializeClock(id, endtime, snooze_length, snoozes) {
+function initializeClock(id, endtime, snooze_length, snooze_count) {
   // The html element that the clock is shown within.
   var clock = document.getElementById(id);
   // Location of minutes.
@@ -24,12 +24,7 @@ function initializeClock(id, endtime, snooze_length, snoozes) {
   // The amount of time between reminders.
   var reminder_separation = snooze_length;
   // The amount of reminders remaining.
-  var reminders_remaining = snoozes;
-  // Check if the user has gone over their initial time.
-  var overtime = false;
-  // The total amount of time that the user has gone over their limit.
-  var total_time_over = 0;
-
+  var reminders_remaining = snooze_count;
 
   // This function updates the clock every second.
   function updateClock() {
@@ -75,28 +70,21 @@ function setreminder(deadline, reminder_type) {
   }
 }
 
-function breakTimer(inputminutes, snooze_length, snoozes) {
+function breakTimer(inputminutes, snooze_length, snooze_count, halfway_message, third_message, fourth_message) {
   var deadline = new Date(Date.parse(new Date()) + inputminutes * 60 * 1000);
-  initializeClock('clockdiv', deadline, snooze_length, snoozes);
-  var snooze = {
-    half : true,
-    third : false,
-    fourth: false
-  };
-
-  if (snooze.half) {
+  initializeClock('clockdiv', deadline, snooze_length, snooze_count);
+  if (halfway_message == 1) {
       var deadline2 = inputminutes * 60 * 1000/2;
-      setreminder(deadline2,"half");
+      setreminder(deadline2, "half");
   }
-  if (snooze.third){
+  if (third_message == 1){
       var deadline3 = 2 * (inputminutes * 60 * 1000/3);
-      setreminder(deadline3,"third");
+      setreminder(deadline3, "third");
   }
-  if (snooze.fourth){
+  if (fourth_message == 1){
       var deadline4 = 3 * (inputminutes * 60 * 1000/4);
-      setreminder(deadline4,"fourth");
-
-  }
+      setreminder(deadline4, "fourth");
+    }
 }
 
 // The value here is the amount of minutes that the timer will run for.

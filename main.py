@@ -39,6 +39,10 @@ class Timer(ndb.Model):
     timer_personality = ndb.StringProperty()
     # The user id associated with a timer.
     user_id = ndb.StringProperty()
+    # Thanks, jinja.
+    halfway_int = ndb.IntegerProperty()
+    third_int = ndb.IntegerProperty()
+    quarter_int = ndb.IntegerProperty()
 
 class Settings(ndb.Model):
     # If the user wants a reminder when their break is halfway over.
@@ -103,7 +107,22 @@ class MainHandler(webapp2.RequestHandler):
         fourthleft_reminder = user_settings.reminder_fourth
         timer_message = user_settings.message_type
 
-        new_timer = Timer(timer_task=task, break_length=break_length, reminder_amount=reminder_amount, reminder_frequency=reminder_frequency, halfway_left=halfway_reminder, third_left=thirdleft_reminder, quarter_left=fourthleft_reminder, timer_personality=timer_message, user_id=user_id)
+        if halfway_reminder is True:
+            halfway_int = 1
+        else:
+            halfway_int = 0
+
+        if thirdleft_reminder is True:
+            third_int = 1
+        else:
+            third_int = 0
+
+        if fourthleft_reminder is True:
+            quarter_int = 1
+        else:
+            quarter_int = 0
+
+        new_timer = Timer(timer_task=task, break_length=break_length, reminder_amount=reminder_amount, reminder_frequency=reminder_frequency, halfway_left=halfway_reminder, third_left=thirdleft_reminder, quarter_left=fourthleft_reminder, timer_personality=timer_message, user_id=user_id, halfway_int =halfway_int, third_int = third_int, quarter_int = quarter_int)
         new_timer.put()
 
         self.redirect('/timer?user=' + user_id + '&key=' + new_timer.key.urlsafe())
